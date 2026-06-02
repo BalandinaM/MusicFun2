@@ -1,9 +1,14 @@
+import { Header } from '@/common/components'
 import { Routing } from '@/common/routing/Routing'
+import s from './App.module.css'
 
 function App() {
   return (
     <>
-      <Routing />
+      <Header />
+      <div className={s.layout}>
+        <Routing />
+      </div>
     </>
   )
 }
