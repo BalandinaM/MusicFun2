@@ -1,0 +1,47 @@
+import { useUpdatePlaylistMutation } from '@/features/playlists/api/playlistsApi'
+import type { UpdatePlaylistArgs } from '@/features/playlists/api/playlistsApi.types'
+import type {
+  SubmitHandler,
+  UseFormRegister,
+  UseFormHandleSubmit,
+} from 'react-hook-form'
+
+type Props = {
+  playlistId: string
+  register: UseFormRegister<UpdatePlaylistArgs>
+  handleSubmit: UseFormHandleSubmit<UpdatePlaylistArgs>
+  editPlaylist: (playlist: null) => void
+  setPlaylistId: (playlistId: null) => void
+}
+
+export const EditPlaylistForm = ({
+  playlistId,
+  handleSubmit,
+  register,
+  editPlaylist,
+  setPlaylistId,
+}: Props) => {
+  const [updatePlaylist] = useUpdatePlaylistMutation()
+
+  const onSubmit: SubmitHandler<UpdatePlaylistArgs> = data => {
+    console.log(data)
+    if (!playlistId) return
+    updatePlaylist({ playlistId, body: data }).then(() => {
+      setPlaylistId(null)
+    })
+  }
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <h2>Update playlist</h2>
+      <div>
+        <input {...register('title')} placeholder={'title'} />
+      </div>
+      <div>
+        <input {...register('description')} placeholder={'description'} />
+      </div>
+      <button>save</button>
+      <button onClick={() => editPlaylist(null)}>cancel</button>
+    </form>
+  )
+}
