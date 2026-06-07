@@ -12,15 +12,20 @@ import {
   useDeletePlaylistMutation,
 } from '../../api/playlistsApi'
 import { useDebounceValue } from '@/common/hooks'
+import { Pagination } from '@/common/components'
 
 export const PlaylistsPage = () => {
   const [playlistId, setPlaylistId] = useState<string | null>(null)
   const [search, setSearch] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
 
   const { register, handleSubmit, reset } = useForm<UpdatePlaylistArgs>()
 
   const debounceSearch = useDebounceValue(search)
-  const { data, isLoading } = useFetchPlaylistsQuery({ search: debounceSearch })
+  const { data, isLoading } = useFetchPlaylistsQuery({
+    search: debounceSearch,
+    pageNumber: currentPage,
+  })
   const [deletePlaylist] = useDeletePlaylistMutation()
 
   const deletePlaylistHandler = (playlistId: string) => {
@@ -77,6 +82,11 @@ export const PlaylistsPage = () => {
           )
         })}
       </div>
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        pagesCount={data?.meta.pagesCount || 1}
+      />
     </div>
   )
 }
