@@ -11,12 +11,16 @@ import {
   useFetchPlaylistsQuery,
   useDeletePlaylistMutation,
 } from '../../api/playlistsApi'
+import { useDebounceValue } from '@/common/hooks'
 
 export const PlaylistsPage = () => {
   const [playlistId, setPlaylistId] = useState<string | null>(null)
+  const [search, setSearch] = useState('')
+
   const { register, handleSubmit, reset } = useForm<UpdatePlaylistArgs>()
 
-  const { data } = useFetchPlaylistsQuery()
+  const debounceSearch = useDebounceValue(search)
+  const { data, isLoading } = useFetchPlaylistsQuery({ search: debounceSearch })
   const [deletePlaylist] = useDeletePlaylistMutation()
 
   const deletePlaylistHandler = (playlistId: string) => {
@@ -42,7 +46,13 @@ export const PlaylistsPage = () => {
     <div className={s.container}>
       <h1>Playlists page</h1>
       <CreatePlaylistForm />
+      <input
+        type="search"
+        onChange={e => setSearch(e.currentTarget.value)}
+        placeholder={'Search playlist by title'}
+      />
       <div className={s.items}>
+        {!data?.data.length && !isLoading && <h2>Плейлист не найден</h2>}
         {data?.data.map(playlist => {
           const isEditing = playlistId === playlist.id
 
