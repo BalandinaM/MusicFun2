@@ -18,6 +18,8 @@ export const PlaylistsPage = () => {
     pageSize: pageSize,
   })
 
+  if (isLoading) return <h1>Skeleton loader...</h1>
+
   const searchPlaylistHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.currentTarget.value)
     setCurrentPage(1)
