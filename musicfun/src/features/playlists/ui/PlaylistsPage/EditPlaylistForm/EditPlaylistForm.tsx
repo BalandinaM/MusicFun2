@@ -24,11 +24,9 @@ export const EditPlaylistForm = ({
   const [updatePlaylist] = useUpdatePlaylistMutation()
 
   const onSubmit: SubmitHandler<UpdatePlaylistArgs> = data => {
-    console.log(data)
     if (!playlistId) return
-    updatePlaylist({ playlistId, body: data }).then(() => {
-      setPlaylistId(null)
-    })
+    updatePlaylist({ playlistId, body: data })
+    setPlaylistId(null)
   }
 
   return (
