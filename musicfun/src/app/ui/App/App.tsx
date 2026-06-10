@@ -1,8 +1,8 @@
 import { Header, LinearProgress } from '@/common/components'
 import { Routing } from '@/common/routing/Routing'
 import s from './App.module.css'
-import { ToastContainer } from 'react-toastify/unstyled'
 import { useGlobalLoading } from '@/common/hooks/useGlobalLoading'
+import { Toaster } from 'sonner'
 
 function App() {
   const isGlobalLoading = useGlobalLoading()
@@ -14,7 +14,8 @@ function App() {
       <div className={s.layout}>
         <Routing />
       </div>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
+      <Toaster position="top-right" richColors />
     </>
   )
 }
