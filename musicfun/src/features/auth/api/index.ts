@@ -1,2 +1,2 @@
 export { authApi } from './authApi'
-export type { MeResponse } from './authApi.types'
+export type { MeResponse, LoginResponse, LoginArgs } from './authApi.types'
