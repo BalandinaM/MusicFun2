@@ -33,7 +33,6 @@ export const PlaylistsPage = () => {
   return (
     <div className={s.container}>
       <h1>Playlists page</h1>
-      <CreatePlaylistForm />
       <input
         type="search"
         onChange={searchPlaylistHandler}
