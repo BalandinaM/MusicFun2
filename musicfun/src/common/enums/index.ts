@@ -1,1 +1,1 @@
-export { type CurrentUserReaction } from './enums'
+export { CurrentUserReaction } from './enums'

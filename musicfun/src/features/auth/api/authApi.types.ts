@@ -1,12 +1,9 @@
-export type MeResponse = {
-  userId: string
-  login: string
-}
+import type { loginResponseSchema, meResponseSchema } from '../model'
+import * as z from 'zod'
 
-export type LoginResponse = {
-  refreshToken: string
-  accessToken: string
-}
+export type MeResponse = z.infer<typeof meResponseSchema>
+
+export type LoginResponse = z.infer<typeof loginResponseSchema>
 
 export type LoginArgs = {
   code: string

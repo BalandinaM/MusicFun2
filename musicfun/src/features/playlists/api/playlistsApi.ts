@@ -1,27 +1,27 @@
-import type { Images } from '@/common/types'
 import {
-  type PlaylistsResponse,
   type CreatePlaylistArgs,
-  type PlaylistData,
   type UpdatePlaylistArgs,
   type FetchPlaylistsArgs,
 } from './playlistsApi.types'
 import { baseApi } from '@/app/api/baseApi'
+import { playlistCreateResponseSchema, playlistsResponseSchema } from '../model'
+import { withZodCatch } from '@/common/utils'
 
 export const playlistsApi = baseApi.injectEndpoints({
   endpoints: build => ({
-    fetchPlaylists: build.query<PlaylistsResponse, FetchPlaylistsArgs>({
-      query: params => {
+    fetchPlaylists: build.query({
+      query: (params: FetchPlaylistsArgs) => {
         return {
           method: 'get',
           url: `playlists`,
           params,
         }
       },
+      ...withZodCatch(playlistsResponseSchema),
       providesTags: ['Playlist'],
     }),
-    createPlaylist: build.mutation<{ data: PlaylistData }, CreatePlaylistArgs>({
-      query: body => {
+    createPlaylist: build.mutation({
+      query: (body: CreatePlaylistArgs) => {
         return {
           method: 'post',
           url: `playlists`,
@@ -33,6 +33,7 @@ export const playlistsApi = baseApi.injectEndpoints({
           },
         }
       },
+      ...withZodCatch(playlistCreateResponseSchema),
       invalidatesTags: ['Playlist'],
     }),
     deletePlaylist: build.mutation<void, string>({
@@ -107,11 +108,8 @@ export const playlistsApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ['Playlist'],
     }),
-    uploadPlaylistCover: build.mutation<
-      Images,
-      { playlistId: string; file: File }
-    >({
-      query: ({ playlistId, file }) => {
+    uploadPlaylistCover: build.mutation({
+      query: ({ playlistId, file }: { playlistId: string; file: File }) => {
         const formData = new FormData()
         formData.append('file', file)
         return {
@@ -120,6 +118,7 @@ export const playlistsApi = baseApi.injectEndpoints({
           body: formData,
         }
       },
+      ...withZodCatch(playlistCreateResponseSchema),
       invalidatesTags: ['Playlist'],
     }),
     deletePlaylistCover: build.mutation<void, { playlistId: string }>({
