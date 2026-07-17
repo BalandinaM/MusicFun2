@@ -1,14 +1,10 @@
-import {
-  imagesSchema,
-  currentUserReactionSchema,
-  userSchema,
-} from '@/common/schemas'
+import { imagesSchema, userSchema } from '@/common/schemas'
 import * as z from 'zod'
 
 export const trackAttachmentSchema = z.object({
   id: z.string(),
-  addedAt: z.iso.datetime(),
-  updatedAt: z.iso.datetime(),
+  addedAt: z.string().datetime({ offset: true }), // или z.iso.datetime() если у вас кастомный
+  updatedAt: z.string().datetime({ offset: true }),
   version: z.number().int().nonnegative(),
   url: z.string().url(),
   contentType: z.string(),
@@ -18,21 +14,26 @@ export const trackAttachmentSchema = z.object({
 
 export const trackAttributesSchema = z.object({
   title: z.string(),
-  addedAt: z.iso.datetime(),
+  user: userSchema, // Убедитесь, что userSchema соответствует { id, name }
+  addedAt: z.string().datetime({ offset: true }),
   attachments: z.array(trackAttachmentSchema),
-  images: imagesSchema,
-  currentUserReaction: currentUserReactionSchema,
-  user: userSchema,
+  images: imagesSchema, // Убедитесь, что imagesSchema соответствует структуре
+  currentUserReaction: z.number().int().min(0).max(2), // 0, 1, 2
+  publishedAt: z.string().datetime({ offset: true }),
+  likesCount: z.number().int().nonnegative(), // 👈 Новое поле!
   isPublished: z.boolean(),
-  publishedAt: z.iso.datetime(),
+  duration: z.number().int().nonnegative(), // 👈 Новое поле!
 })
 
+// relationships теперь может быть с пустым массивом
 export const trackRelationshipsSchema = z.object({
   artists: z.object({
-    data: z.object({
-      id: z.string(),
-      type: z.literal('artists'),
-    }),
+    data: z.array(
+      z.object({
+        id: z.string(),
+        type: z.literal('artists'),
+      })
+    ), // 👈 Теперь это массив, а не объект
   }),
 })
 
