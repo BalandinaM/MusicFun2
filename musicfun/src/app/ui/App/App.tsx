@@ -8,7 +8,7 @@ function App() {
   const isGlobalLoading = useGlobalLoading()
 
   return (
-    <>
+    <div className="container">
       <Header />
       {isGlobalLoading && <LinearProgress />}
       <div className={s.layout}>
@@ -16,7 +16,7 @@ function App() {
       </div>
       {/* <ToastContainer /> */}
       <Toaster position="top-right" richColors />
-    </>
+    </div>
   )
 }
 

@@ -1,0 +1,283 @@
+:root {
+  /* Базовые переменные */
+  --font-primary: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-secondary: 'Avenir Next', var(--font-primary);
+
+  /* Цвета текста */
+  --text-white: #ffffff;
+  --text-white-70: rgba(255, 255, 255, 0.7);
+  --text-gray: #b3b3b3;
+  --text-gray-300: #b3b3b3;
+  --text-pink: #ff38b6;
+}
+
+/* ============================================
+   1. ЗАГОЛОВКИ (Heading)
+   ============================================ */
+
+/* Крупный заголовок страницы (Login, Profile) */
+.text-heading-xl {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 133%;
+  text-align: center;
+  color: var(--text-white);
+}
+
+/* Заголовок секции (Новые плейлисты, Новые треки) */
+.text-heading-lg {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--text-white);
+}
+
+/* Заголовок плейлиста на странице плейлиста */
+.text-heading-playlist {
+  font-family: var(--font-primary);
+  font-weight: 900;
+  font-size: 24px;
+  color: var(--text-white);
+}
+
+/* Заголовок карточки трека (22px) */
+.text-heading-track {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 127%;
+  letter-spacing: -0.03em;
+  color: var(--text-white);
+}
+
+/* ============================================
+   2. ОСНОВНОЙ ТЕКСТ (Body)
+   ============================================ */
+
+/* Крупный текст (Sort By, имя профиля) */
+.text-body-lg {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.01em;
+  color: var(--text-white);
+}
+
+/* Основной текст (названия треков, плейлистов) */
+.text-body-md {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-white);
+}
+
+/* Текст с подчеркиванием (Sort By выбранный) */
+.text-body-md-underline {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--text-white);
+}
+
+/* Мелкий текст (исполнители, информация, даты) */
+.text-body-sm {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--text-gray);
+}
+
+/* Мелкий текст с центром (исполнители в карточках) */
+.text-body-sm-center {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 13px;
+  text-align: center;
+  color: var(--text-gray);
+}
+
+/* Очень мелкий текст (лайки, длительности) */
+.text-body-xs {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 10px;
+  text-align: center;
+  color: var(--text-gray);
+}
+
+/* ============================================
+   3. МЕНЮ И НАВИГАЦИЯ
+   ============================================ */
+
+/* Активный пункт меню */
+.text-menu-active {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--text-white);
+}
+
+/* Неактивный пункт меню (серый) */
+.text-menu-inactive {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--text-gray); /* или rgba(255,255,255,0.5) */
+}
+
+/* Верхнее меню (чипсы) */
+.text-menu-chip {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--text-white);
+}
+
+/* ============================================
+   4. КНОПКИ И ЭЛЕМЕНТЫ УПРАВЛЕНИЯ
+   ============================================ */
+
+/* Кнопка Login (жирная) */
+.text-button-login {
+  font-family: var(--font-primary);
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: var(--text-white);
+}
+
+/* Основная кнопка */
+.text-button {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  color: var(--text-white);
+}
+
+/* Кнопка в профиле
+.text-button-profile {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: var(--text-white);
+} */
+
+/* ============================================
+   5. ВСПОМОГАТЕЛЬНЫЙ ТЕКСТ
+   ============================================ */
+
+/* Плейсхолдер поиска */
+.text-placeholder {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--text-white);
+}
+
+/* Текст с подчеркиванием (Show more, and 5 more) */
+.text-link {
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--text-pink);
+}
+
+/* Подпись (Made for Dima, кому принадлежит) */
+.text-meta {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  color: var(--text-white-70);
+}
+
+/* Имя пользователя с подчеркиванием */
+.text-meta-underline {
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--text-white);
+}
+
+/* Доп. информация (дата, длительность) */
+.text-meta-light {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  color: var(--text-white-70);
+}
+
+/* ============================================
+   6. ЧИПСЫ И ТЕГИ
+   ============================================ */
+
+/* Заголовок HashTags */
+.text-tag-title {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 171%;
+  color: var(--text-white);
+}
+
+/* Чипсы */
+.text-tag {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 171%;
+  color: var(--text-white);
+}
+
+/* Чипсы с подчеркиванием (and 5 more) */
+.text-tag-link {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 171%;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--text-white);
+}
+
+/* ============================================
+   7. ПАГИНАЦИЯ
+   ============================================ */
+
+.text-pagination {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: var(--text-white);
+}
+
+/* ============================================
+   8. ТЕКСТ ПЕСНИ (Страница трека)
+   ============================================ */
+
+.text-lyrics {
+  font-family: var(--font-primary);
+  font-weight: 900;
+  font-size: 20px;
+  text-align: center;
+  color: var(--text-white);
+}
+
+/* Вопрос "What's your vibe?" */
+.text-question {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 156%;
+  color: var(--text-white);
+}

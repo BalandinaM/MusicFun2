@@ -1,0 +1,15 @@
+/* ===== Светлая тема (по умолчанию) ===== */
+:root {
+  --color-light: #ffffff;
+  --color-dark: #121212;
+  --color-gray-900: #0d0d0d;
+  --color-gray-800: #333333;
+  --color-gray-700: #4d4d4d;
+  --color-gray-500: #808080;
+  --color-gray-400: #999999;
+  --color-gray-300: #b3b3b3;
+  --color-blue-500: #00ade7;
+  --color-pink-500: #ff38b6;
+  --color-pink-300: rgba(255, 56, 182, 0.3);
+  --color-purple-900: #51173c;
+}
