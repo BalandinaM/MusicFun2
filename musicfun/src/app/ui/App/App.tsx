@@ -1,4 +1,4 @@
-import { Header, LinearProgress, NavMenu } from '@/common/components'
+import { LinearProgress, NavMenu } from '@/common/components'
 import { Routing } from '@/common/routing/Routing'
 import s from './App.module.css'
 import { useGlobalLoading } from '@/common/hooks/useGlobalLoading'
@@ -9,7 +9,6 @@ function App() {
 
   return (
     <div className="container">
-      <Header />
       {isGlobalLoading && <LinearProgress />}
       <div className={s.layout}>
         <Routing />
