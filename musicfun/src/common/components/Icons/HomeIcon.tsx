@@ -1,0 +1,14 @@
+import type { SVGProps } from 'react'
+
+export const HomeIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 27 23"
+    width={27}
+    height={23}
+    fill="currentColor"
+    {...props}
+  >
+    <path d="M13.3333 3.58667L20 9.58667V20H17.3333V12H9.33333V20H6.66667V9.58667L13.3333 3.58667ZM13.3333 0L0 12H4V22.6667H12V14.6667H14.6667V22.6667H22.6667V12H26.6667L13.3333 0Z" />
+  </svg>
+)

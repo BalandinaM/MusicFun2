@@ -1,1 +1,7 @@
+export { AllPlaylistsIcon } from './AllPlaylistsIcon'
+export { DislikeIcon } from './DislikeIcon'
+export { HomeIcon } from './HomeIcon'
+export { LibraryIcon } from './LibraryIcon'
+export { LikeIcon } from './LikeIcon'
 export { LogoutIcon } from './LogoutIcon'
+export { TracksIcon } from './TracksIcon'
