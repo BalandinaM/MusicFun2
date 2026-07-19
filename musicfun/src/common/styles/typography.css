@@ -113,7 +113,7 @@
    ============================================ */
 
 /* Активный пункт меню */
-.text-menu-active {
+/* .text-menu-active {
   font-family: var(--font-primary);
   font-weight: 700;
   font-size: 12px;
@@ -121,12 +121,12 @@
 }
 
 /* Неактивный пункт меню (серый) */
-.text-menu-inactive {
+/* .text-menu-inactive {
   font-family: var(--font-primary);
   font-weight: 700;
   font-size: 12px;
-  color: var(--text-gray); /* или rgba(255,255,255,0.5) */
-}
+  color: var(--text-gray);
+}  */
 
 /* Верхнее меню (чипсы) */
 .text-menu-chip {
