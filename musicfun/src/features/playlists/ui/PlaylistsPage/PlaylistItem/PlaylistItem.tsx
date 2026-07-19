@@ -4,8 +4,8 @@ import { PlaylistDescription } from './PlaylistDescription/PlaylistDescription'
 
 type Props = {
   playlist: PlaylistData
-  deletePlaylistHandler: (playlistId: string) => void
-  editPlaylistHandler: (playlist: PlaylistData) => void
+  deletePlaylistHandler?: (playlistId: string) => void
+  editPlaylistHandler?: (playlist: PlaylistData) => void
 }
 
 export const PlaylistItem = ({
@@ -21,10 +21,10 @@ export const PlaylistItem = ({
       />
       <PlaylistDescription attributes={playlist.attributes} />
       <div>
-        <button onClick={() => deletePlaylistHandler(playlist.id)}>
+        <button onClick={() => deletePlaylistHandler?.(playlist.id)}>
           delete
         </button>
-        <button onClick={() => editPlaylistHandler(playlist)}>update</button>
+        <button onClick={() => editPlaylistHandler?.(playlist)}>update</button>
       </div>
     </div>
   )

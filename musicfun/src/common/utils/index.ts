@@ -1,4 +1,5 @@
 export { errorToast } from './errorToast'
+export { getDaysPassed, getDaysAgoText } from './dateUtils'
 export { getPaginationPages } from './getPaginationPages'
 export { handleErrors } from './handleErrors'
 export { isErrorWithDetailArray } from './isErrorWithDetailArray'
