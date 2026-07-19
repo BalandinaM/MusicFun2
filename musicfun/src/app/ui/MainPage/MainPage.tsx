@@ -1,4 +1,4 @@
-import { Chip } from '@/common/components'
+import { Chip, HorizontalScroll } from '@/common/components'
 import { HeaderMainPage } from './HeaderMainPage'
 import s from './MainPage.module.css'
 import { useGetMeQuery } from '@/features/auth/api/authApi'
@@ -11,11 +11,11 @@ export const MainPage = () => {
   return (
     <div className={s.wrapMainPage}>
       <HeaderMainPage data={data} />
-      <div className={s.wrapTags}>
+      <HorizontalScroll gap={8} padding="12px 0">
         {tags.map(tag => (
           <Chip label={tag} key={tag} isAuth={isAuth} />
         ))}
-      </div>
+      </HorizontalScroll>
     </div>
   )
 }

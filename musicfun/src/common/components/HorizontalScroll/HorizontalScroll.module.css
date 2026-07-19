@@ -1,0 +1,19 @@
+.scrollContainer {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+
+  /* Скрываем скроллбар для красоты */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE и Edge */
+}
+
+.scrollContainer::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.scrollContainer > * {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
