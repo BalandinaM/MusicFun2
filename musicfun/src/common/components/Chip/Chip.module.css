@@ -1,0 +1,11 @@
+.wrap {
+  display: flex;
+  border: 0.6px solid #7f7f7f;
+  border-radius: 45px;
+  padding: 8px 19px;
+  width: fit-content;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-dark);
+}

@@ -1,11 +1,13 @@
 import { Login } from '@/common/components'
-import { useGetMeQuery } from '@/features/auth/api/authApi'
 import s from './HeaderMainPage.module.css'
 import { AuthUser } from './AuthUser'
+import type { MeResponse } from '@/features/auth/api'
 
-export const HeaderMainPage = () => {
-  const { data } = useGetMeQuery()
+type Props = {
+  data?: MeResponse
+}
 
+export const HeaderMainPage = ({ data }: Props) => {
   return (
     <div className={s.container}>
       {data && <AuthUser data={data} />}
