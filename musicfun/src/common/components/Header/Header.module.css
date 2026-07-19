@@ -6,15 +6,6 @@
   justify-content: space-between;
 }
 
-.list {
-  display: flex;
-  gap: 40px;
-}
-
-.activeLink {
-  font-weight: bold;
-}
-
 .loginContainer {
   display: flex;
   gap: 10px;

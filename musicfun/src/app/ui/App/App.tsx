@@ -1,4 +1,4 @@
-import { Header, LinearProgress } from '@/common/components'
+import { Header, LinearProgress, NavMenu } from '@/common/components'
 import { Routing } from '@/common/routing/Routing'
 import s from './App.module.css'
 import { useGlobalLoading } from '@/common/hooks/useGlobalLoading'
@@ -14,7 +14,7 @@ function App() {
       <div className={s.layout}>
         <Routing />
       </div>
-      {/* <ToastContainer /> */}
+      <NavMenu />
       <Toaster position="top-right" richColors />
     </div>
   )

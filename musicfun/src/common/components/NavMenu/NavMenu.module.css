@@ -1,0 +1,8 @@
+.list {
+  display: flex;
+  gap: 40px;
+}
+
+.activeLink {
+  font-weight: bold;
+}
