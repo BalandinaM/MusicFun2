@@ -2,6 +2,12 @@
   color: blueviolet;
 }
 
+.wrap {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+}
+
 .active {
   color: var(--color-pink-500);
 }

@@ -27,10 +27,10 @@ export const ButtonReaction = ({
       className={isActive ? s.active : ''}
     >
       {variant === 'like' && (
-        <>
+        <div className={s.wrap}>
           <LikeIcon />
-          <span>{likesCount}</span>
-        </>
+          <span className="text-body-xs">{likesCount}</span>
+        </div>
       )}
       {variant === 'dislike' && <DislikeIcon />}
     </button>

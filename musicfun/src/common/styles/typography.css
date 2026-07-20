@@ -11,6 +11,12 @@
   --text-pink: #ff38b6;
 }
 
+.text-truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 /* ============================================
    1. ЗАГОЛОВКИ (Heading)
    ============================================ */

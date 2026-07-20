@@ -28,17 +28,17 @@ export const CardPlalist = ({ playlist }: Props) => {
   }
 
   return (
-    <div>
+    <div className={s.card}>
       <img src={src} alt="Cover" width={'174px'} className={s.cover} />
-      <h4>{data.title}</h4>
-      <p>
-        <span>Made for </span>
-        {data.user.name}
+      <h4 className="text-body-md text-truncate">{data.title}</h4>
+      <p className="text-meta text-truncate">
+        Made for
+        <span className="text-meta-underline"> {data.user.name}</span>
       </p>
-      <p>
+      <p className="text-meta text-truncate">
         {data.tracksCount} Tracks • Created {getDaysAgoText(data.addedAt)}
       </p>
-      <div>
+      <div className={s.wrapButton}>
         <ButtonReaction
           variant="like"
           playlistId={playlist.id}
