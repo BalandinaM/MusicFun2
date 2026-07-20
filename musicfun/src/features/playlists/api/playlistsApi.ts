@@ -2,9 +2,14 @@ import {
   type CreatePlaylistArgs,
   type UpdatePlaylistArgs,
   type FetchPlaylistsArgs,
+  type LikePlaylistRequest,
 } from './playlistsApi.types'
 import { baseApi } from '@/app/api/baseApi'
-import { playlistCreateResponseSchema, playlistsResponseSchema } from '../model'
+import {
+  likePlaylistResponseSchema,
+  playlistCreateResponseSchema,
+  playlistsResponseSchema,
+} from '../model'
 import { withZodCatch } from '@/common/utils'
 
 export const playlistsApi = baseApi.injectEndpoints({
@@ -128,6 +133,14 @@ export const playlistsApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['Playlist'],
     }),
+    likePlaylist: build.mutation({
+      query: ({ playlistId }: LikePlaylistRequest) => ({
+        method: 'post',
+        url: `playlists/${playlistId}/likes`,
+      }),
+      ...withZodCatch(likePlaylistResponseSchema),
+      invalidatesTags: ['Playlist'],
+    }),
   }),
 })
 
@@ -138,4 +151,5 @@ export const {
   useUpdatePlaylistMutation,
   useUploadPlaylistCoverMutation,
   useDeletePlaylistCoverMutation,
+  useLikePlaylistMutation,
 } = playlistsApi

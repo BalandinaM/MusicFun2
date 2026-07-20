@@ -1,9 +1,12 @@
 import type {
   createPlaylistSchema,
+  likePlaylistRequestSchema,
+  likePlaylistResponseSchema,
   playlistAttributesSchema,
   playlistDataSchema,
   playlistMetaSchema,
   playlistsResponseSchema,
+  reactionOutputSchema,
 } from '../model'
 import * as z from 'zod'
 
@@ -29,3 +32,6 @@ export type CreatePlaylistArgs = z.infer<typeof createPlaylistSchema>
 export type PlaylistsResponse = z.infer<typeof playlistsResponseSchema>
 export type PlaylistData = z.infer<typeof playlistDataSchema>
 export type PlaylistAttributes = z.infer<typeof playlistAttributesSchema>
+export type LikePlaylistRequest = z.infer<typeof likePlaylistRequestSchema>
+export type ReactionOutput = z.infer<typeof reactionOutputSchema>
+export type LikePlaylistResponse = z.infer<typeof likePlaylistResponseSchema>
