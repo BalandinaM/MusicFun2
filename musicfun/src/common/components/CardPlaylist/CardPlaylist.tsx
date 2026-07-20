@@ -2,17 +2,30 @@ import type { PlaylistData } from '@/features/playlists/api'
 import defaultCover from '@/assets/images/defaultCover.png'
 import s from './CardPlaylist.module.css'
 import { getDaysAgoText } from '@/common/utils'
-import { DislikeIcon, LikeIcon } from '../Icons'
-import { Reactions } from '../Reactions/Reactions'
+import { ButtonReaction } from '../ButtonReaction/ButtonReaction'
+import {
+  useLikePlaylistMutation,
+  useDislikePlaylistMutation,
+} from '@/features/playlists/api/playlistsApi'
 
 type Props = {
   playlist: PlaylistData
 }
 
 export const CardPlalist = ({ playlist }: Props) => {
+  const [postLikeReaction] = useLikePlaylistMutation()
+  const [postDislikeReaction] = useDislikePlaylistMutation()
   const data = playlist.attributes
   const thumbnailCover = data.images.main.find(img => img.type === 'thumbnail')
   const src = thumbnailCover ? thumbnailCover?.url : defaultCover
+
+  const handleLikeReaction = (playlistId: string) => {
+    postLikeReaction({ playlistId })
+  }
+
+  const handleDisLikeReaction = (playlistId: string) => {
+    postDislikeReaction({ playlistId })
+  }
 
   return (
     <div>
@@ -25,13 +38,21 @@ export const CardPlalist = ({ playlist }: Props) => {
       <p>
         {data.tracksCount} Tracks • Created {getDaysAgoText(data.addedAt)}
       </p>
-      {/* Этот  блок надо вынести в отдельный компонент, ну или нет, подумать, 
-      тут должны быть кнопки, надо замутить обработчик клика, и дебаунс обязательно, вдруг
-      юзер передумает лайкать
-      плюсоми передать состояние, лайкнут плайлист или нет,
-      вообще логичней вынести его, так как этот же блок я буду использовать в треках
-      */}
-      <Reactions data={data} playlistId={playlist.id} />
+      <div>
+        <ButtonReaction
+          variant="like"
+          playlistId={playlist.id}
+          callback={handleLikeReaction}
+          userReaction={data.currentUserReaction}
+          likesCount={data.likesCount}
+        />
+        <ButtonReaction
+          variant="dislike"
+          playlistId={playlist.id}
+          callback={handleDisLikeReaction}
+          userReaction={data.currentUserReaction}
+        />
+      </div>
     </div>
   )
 }
