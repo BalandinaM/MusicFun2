@@ -3,12 +3,14 @@ import {
   type UpdatePlaylistArgs,
   type FetchPlaylistsArgs,
   type LikePlaylistRequest,
+  type ReactionPlaylistRequest,
 } from './playlistsApi.types'
 import { baseApi } from '@/app/api/baseApi'
 import {
   likePlaylistResponseSchema,
   playlistCreateResponseSchema,
   playlistsResponseSchema,
+  reactionPlaylistResponseSchema,
 } from '../model'
 import { withZodCatch } from '@/common/utils'
 
@@ -134,11 +136,19 @@ export const playlistsApi = baseApi.injectEndpoints({
       invalidatesTags: ['Playlist'],
     }),
     likePlaylist: build.mutation({
-      query: ({ playlistId }: LikePlaylistRequest) => ({
+      query: ({ playlistId }: ReactionPlaylistRequest) => ({
         method: 'post',
         url: `playlists/${playlistId}/likes`,
       }),
-      ...withZodCatch(likePlaylistResponseSchema),
+      ...withZodCatch(reactionPlaylistResponseSchema),
+      invalidatesTags: ['Playlist'],
+    }),
+    dislikePlaylist: build.mutation({
+      query: ({ playlistId }: ReactionPlaylistRequest) => ({
+        method: 'post',
+        url: `playlists/${playlistId}/dislikes`,
+      }),
+      ...withZodCatch(reactionPlaylistResponseSchema),
       invalidatesTags: ['Playlist'],
     }),
   }),
@@ -152,4 +162,5 @@ export const {
   useUploadPlaylistCoverMutation,
   useDeletePlaylistCoverMutation,
   useLikePlaylistMutation,
+  useDislikePlaylistMutation,
 } = playlistsApi

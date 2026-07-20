@@ -4,7 +4,10 @@ import s from './Reactions.module.css'
 import { CurrentUserReaction as UserReaction } from '@/common/enums'
 import type { CurrentUserReaction } from '@/common/types/types'
 import { useState } from 'react'
-import { useLikePlaylistMutation } from '@/features/playlists/api/playlistsApi'
+import {
+  useDislikePlaylistMutation,
+  useLikePlaylistMutation,
+} from '@/features/playlists/api/playlistsApi'
 
 type Props = {
   data: PlaylistAttributes
@@ -16,23 +19,29 @@ export const Reactions = ({ data, playlistId }: Props) => {
   //     data.currentUserReaction
   //   )
   //   console.log(isLiked)
-  const [postReaction] = useLikePlaylistMutation()
+  const [postLikeReaction] = useLikePlaylistMutation()
+  const [postDislikeReaction] = useDislikePlaylistMutation()
 
-  const handleReaction = (playlistId: string) => {
-    postReaction({ playlistId })
+  const handleLikeReaction = (playlistId: string) => {
+    postLikeReaction({ playlistId })
+  }
+
+  const handleDisLikeReaction = (playlistId: string) => {
+    postDislikeReaction({ playlistId })
   }
 
   return (
     <div>
       <button
         // className={isLiked === UserReaction.Like ? s.button : ''}
-        onClick={() => handleReaction(playlistId)}
+        onClick={() => handleLikeReaction(playlistId)}
       >
         <LikeIcon />
         <span>{data.likesCount}</span>
       </button>
       <button
-      //   className={isLiked === UserReaction.Dislike ? s.button : ''}
+        onClick={() => handleDisLikeReaction(playlistId)}
+        //   className={isLiked === UserReaction.Dislike ? s.button : ''}
       >
         <DislikeIcon />
       </button>

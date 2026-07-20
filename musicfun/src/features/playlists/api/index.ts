@@ -7,4 +7,6 @@ export type {
   FetchPlaylistsArgs,
   CreatePlaylistArgs,
   UpdatePlaylistArgs,
+  ReactionPlaylistRequest,
+  ReactionPlaylistResponse,
 } from './playlistsApi.types'

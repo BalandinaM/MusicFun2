@@ -5,6 +5,6 @@ export {
   playlistDataSchema,
   playlistsResponseSchema,
   playlistCreateResponseSchema,
-  likePlaylistRequestSchema,
-  likePlaylistResponseSchema,
+  reactionPlaylistRequestSchema,
+  reactionPlaylistResponseSchema,
 } from './playlists.schemas'
