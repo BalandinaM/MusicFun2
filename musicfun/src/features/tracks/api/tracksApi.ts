@@ -1,5 +1,5 @@
 import { baseApi } from '@/app/api/baseApi'
-import type { FetchTracksResponse } from './tracksApi.types'
+import type { FetchTracksArgs, FetchTracksResponse } from './tracksApi.types'
 import { withZodCatch } from '@/common/utils'
 import { fetchTracksResponseSchema } from '../model'
 
@@ -23,6 +23,17 @@ export const tracksApi = baseApi.injectEndpoints({
         }
       },
       ...withZodCatch(fetchTracksResponseSchema),
+    }),
+    fetchTracksList: build.query({
+      query: (params: FetchTracksArgs) => {
+        return {
+          method: 'get',
+          url: 'playlists/tracks',
+          params,
+        }
+      },
+      ...withZodCatch(fetchTracksResponseSchema),
+      providesTags: ['Track'],
     }),
 
     //////paginationType: 'offset'////////
@@ -50,4 +61,5 @@ export const tracksApi = baseApi.injectEndpoints({
     // }),
   }),
 })
-export const { useFetchTracksInfiniteQuery } = tracksApi
+export const { useFetchTracksInfiniteQuery, useFetchTracksListQuery } =
+  tracksApi
