@@ -1,0 +1,21 @@
+.card {
+  width: 190px;
+  height: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--color-black-50);
+}
+
+.cover {
+  width: 174px;
+  height: 153px;
+  object-fit: cover;
+}
+
+.wrapButton {
+  display: flex;
+  gap: 4px;
+  align-items: flex-start;
+}

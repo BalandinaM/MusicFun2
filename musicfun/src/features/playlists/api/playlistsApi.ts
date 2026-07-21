@@ -2,12 +2,10 @@ import {
   type CreatePlaylistArgs,
   type UpdatePlaylistArgs,
   type FetchPlaylistsArgs,
-  type LikePlaylistRequest,
   type ReactionPlaylistRequest,
 } from './playlistsApi.types'
 import { baseApi } from '@/app/api/baseApi'
 import {
-  likePlaylistResponseSchema,
   playlistCreateResponseSchema,
   playlistsResponseSchema,
   reactionPlaylistResponseSchema,

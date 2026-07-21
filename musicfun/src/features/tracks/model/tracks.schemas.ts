@@ -1,4 +1,8 @@
-import { imagesSchema, userSchema } from '@/common/schemas'
+import {
+  currentUserReactionSchema,
+  imagesSchema,
+  userSchema,
+} from '@/common/schemas'
 import * as z from 'zod'
 
 export const trackAttachmentSchema = z.object({
@@ -18,7 +22,7 @@ export const trackAttributesSchema = z.object({
   addedAt: z.string().datetime({ offset: true }),
   attachments: z.array(trackAttachmentSchema),
   images: imagesSchema, // Убедитесь, что imagesSchema соответствует структуре
-  currentUserReaction: z.number().int().min(0).max(2), // 0, 1, 2
+  currentUserReaction: currentUserReactionSchema, // 0, 1, 2
   publishedAt: z.string().datetime({ offset: true }),
   likesCount: z.number().int().nonnegative(), // 👈 Новое поле!
   isPublished: z.boolean(),
