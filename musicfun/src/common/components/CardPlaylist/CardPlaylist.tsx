@@ -41,14 +41,14 @@ export const CardPlalist = ({ playlist }: Props) => {
       <div className={s.wrapButton}>
         <ButtonReaction
           variant="like"
-          playlistId={playlist.id}
+          elemId={playlist.id}
           callback={handleLikeReaction}
           userReaction={data.currentUserReaction}
           likesCount={data.likesCount}
         />
         <ButtonReaction
           variant="dislike"
-          playlistId={playlist.id}
+          elemId={playlist.id}
           callback={handleDisLikeReaction}
           userReaction={data.currentUserReaction}
         />

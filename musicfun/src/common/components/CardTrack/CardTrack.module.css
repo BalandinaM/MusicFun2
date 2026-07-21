@@ -1,5 +1,5 @@
 .card {
-  width: 190px;
+  width: 128px;
   height: auto;
   padding: 8px;
   display: flex;
@@ -9,8 +9,8 @@
 }
 
 .cover {
-  width: 174px;
-  height: 153px;
+  width: 112px;
+  height: 103px;
   object-fit: cover;
 }
 

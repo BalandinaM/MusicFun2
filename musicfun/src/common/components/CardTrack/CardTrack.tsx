@@ -51,18 +51,18 @@ export const CardTrack = ({ track, included }: Props) => {
     <div className={s.card}>
       <img src={src} alt="Cover" width={'174px'} className={s.cover} />
       <h4 className="text-body-md text-truncate">{dataAtr.title}</h4>
-      <p className="text-truncate">{nameArtist}</p>
+      <p className="text-truncate text-body-sm">{nameArtist}</p>
       <div className={s.wrapButton}>
         <ButtonReaction
           variant="like"
-          playlistId={track.id}
+          elemId={track.id}
           callback={handleLikeReaction}
           userReaction={dataAtr.currentUserReaction}
           likesCount={dataAtr.likesCount}
         />
         <ButtonReaction
           variant="dislike"
-          playlistId={track.id}
+          elemId={track.id}
           callback={handleDisLikeReaction}
           userReaction={dataAtr.currentUserReaction}
         />
