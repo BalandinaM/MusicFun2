@@ -5,7 +5,8 @@ import type { CurrentUserReaction } from '@/common/types/types'
 type PropsButton = {
   variant: 'like' | 'dislike'
   elemId: string
-  callback: (elemId: string) => void
+  handleReaction: (elemId: string) => void
+  removeReaction: (elemId: string) => void
   userReaction: CurrentUserReaction
   likesCount?: number
 }
@@ -13,7 +14,8 @@ type PropsButton = {
 export const ButtonReaction = ({
   variant,
   elemId,
-  callback,
+  handleReaction,
+  removeReaction,
   userReaction,
   likesCount,
 }: PropsButton) => {
@@ -21,11 +23,16 @@ export const ButtonReaction = ({
     (variant === 'like' && userReaction === 1) ||
     (variant === 'dislike' && userReaction === -1)
 
+  const handleClick = () => {
+    if (isActive) {
+      removeReaction(elemId)
+    } else {
+      handleReaction(elemId)
+    }
+  }
+
   return (
-    <button
-      onClick={() => callback(elemId)}
-      className={isActive ? s.active : ''}
-    >
+    <button onClick={handleClick} className={isActive ? s.active : ''}>
       {variant === 'like' && (
         <div className={s.wrap}>
           <LikeIcon />

@@ -6,6 +6,7 @@ import { ButtonReaction } from '../ButtonReaction/ButtonReaction'
 import {
   useLikePlaylistMutation,
   useDislikePlaylistMutation,
+  useRemoveReactionPlaylistMutation,
 } from '@/features/playlists/api/playlistsApi'
 
 type Props = {
@@ -15,6 +16,7 @@ type Props = {
 export const CardPlalist = ({ playlist }: Props) => {
   const [postLikeReaction] = useLikePlaylistMutation()
   const [postDislikeReaction] = useDislikePlaylistMutation()
+  const [removeReaction] = useRemoveReactionPlaylistMutation()
   const data = playlist.attributes
   const thumbnailCover = data.images.main.find(img => img.type === 'thumbnail')
   const src = thumbnailCover ? thumbnailCover?.url : defaultCover
@@ -25,6 +27,10 @@ export const CardPlalist = ({ playlist }: Props) => {
 
   const handleDisLikeReaction = (playlistId: string) => {
     postDislikeReaction({ playlistId })
+  }
+
+  const handleRemoveReaction = (playlistId: string) => {
+    removeReaction({ playlistId })
   }
 
   return (
@@ -42,14 +48,16 @@ export const CardPlalist = ({ playlist }: Props) => {
         <ButtonReaction
           variant="like"
           elemId={playlist.id}
-          callback={handleLikeReaction}
+          handleReaction={handleLikeReaction}
+          removeReaction={handleRemoveReaction}
           userReaction={data.currentUserReaction}
           likesCount={data.likesCount}
         />
         <ButtonReaction
           variant="dislike"
           elemId={playlist.id}
-          callback={handleDisLikeReaction}
+          handleReaction={handleDisLikeReaction}
+          removeReaction={handleRemoveReaction}
           userReaction={data.currentUserReaction}
         />
       </div>

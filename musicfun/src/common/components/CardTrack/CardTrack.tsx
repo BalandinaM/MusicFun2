@@ -6,6 +6,11 @@ import type {
   TrackRelationships,
   TracksIncluded,
 } from '@/features/tracks/api'
+import {
+  useDislikeTrackMutation,
+  useLikeTrackMutation,
+  useRemoveReactionTrackMutation,
+} from '@/features/tracks/api/tracksApi'
 
 type Props = {
   track: TrackData
@@ -13,8 +18,9 @@ type Props = {
 }
 
 export const CardTrack = ({ track, included }: Props) => {
-  // const [postLikeReaction] = useLikePlaylistMutation()
-  // const [postDislikeReaction] = useDislikePlaylistMutation()
+  const [postLikeReaction] = useLikeTrackMutation()
+  const [postDislikeReaction] = useDislikeTrackMutation()
+  const [removeReaction] = useRemoveReactionTrackMutation()
   const dataAtr = track.attributes
   const dataRelationships = track.relationships
   const thumbnailCover = dataAtr.images.main.find(
@@ -38,13 +44,15 @@ export const CardTrack = ({ track, included }: Props) => {
       : 'Unknown Artist'
 
   const handleLikeReaction = (trackId: string) => {
-    // postLikeReaction({ trackId })
-    console.log(trackId)
+    postLikeReaction({ trackId })
   }
 
   const handleDisLikeReaction = (trackId: string) => {
-    // postDislikeReaction({ trackId })
-    console.log(trackId)
+    postDislikeReaction({ trackId })
+  }
+
+  const handleRemoveReaction = (trackId: string) => {
+    removeReaction({ trackId })
   }
 
   return (
@@ -56,14 +64,16 @@ export const CardTrack = ({ track, included }: Props) => {
         <ButtonReaction
           variant="like"
           elemId={track.id}
-          callback={handleLikeReaction}
+          handleReaction={handleLikeReaction}
+          removeReaction={handleRemoveReaction}
           userReaction={dataAtr.currentUserReaction}
           likesCount={dataAtr.likesCount}
         />
         <ButtonReaction
           variant="dislike"
           elemId={track.id}
-          callback={handleDisLikeReaction}
+          handleReaction={handleDisLikeReaction}
+          removeReaction={handleRemoveReaction}
           userReaction={dataAtr.currentUserReaction}
         />
       </div>
