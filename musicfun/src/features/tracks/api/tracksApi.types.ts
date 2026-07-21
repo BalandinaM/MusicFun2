@@ -1,5 +1,7 @@
 import type {
   fetchTracksResponseSchema,
+  reactionTrackRequestSchema,
+  reactionTrackResponseSchema,
   trackAttachmentSchema,
   trackAttributesSchema,
   trackDataSchema,
@@ -16,6 +18,8 @@ export type TrackData = z.infer<typeof trackDataSchema>
 export type TracksIncluded = z.infer<typeof tracksIncludedSchema>
 export type TracksMeta = z.infer<typeof tracksMetaSchema>
 export type FetchTracksResponse = z.infer<typeof fetchTracksResponseSchema>
+export type reactionTrackRequest = z.infer<typeof reactionTrackRequestSchema>
+export type reactionTrackResponse = z.infer<typeof reactionTrackResponseSchema>
 
 // Arguments
 export type FetchTracksArgs = {

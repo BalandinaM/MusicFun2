@@ -6,4 +6,6 @@ export {
   tracksIncludedSchema,
   tracksMetaSchema,
   fetchTracksResponseSchema,
+  reactionTrackRequestSchema,
+  reactionTrackResponseSchema,
 } from './tracks.schemas'

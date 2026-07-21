@@ -69,3 +69,14 @@ export const fetchTracksResponseSchema = z.object({
   included: z.array(tracksIncludedSchema),
   meta: tracksMetaSchema,
 })
+
+export const reactionTrackRequestSchema = z.object({
+  trackId: z.string(),
+})
+
+export const reactionTrackResponseSchema = z.object({
+  objectId: z.string(),
+  value: z.number().int(),
+  likes: z.number().int().nonnegative(),
+  dislikes: z.number().int().nonnegative(),
+})
