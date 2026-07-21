@@ -6,11 +6,7 @@ import type {
   TrackRelationships,
   TracksIncluded,
 } from '@/features/tracks/api'
-import {
-  useDislikeTrackMutation,
-  useLikeTrackMutation,
-  useRemoveReactionTrackMutation,
-} from '@/features/tracks/api/tracksApi'
+import { useReactions } from '@/common/hooks'
 
 type Props = {
   track: TrackData
@@ -18,9 +14,7 @@ type Props = {
 }
 
 export const CardTrack = ({ track, included }: Props) => {
-  const [postLikeReaction] = useLikeTrackMutation()
-  const [postDislikeReaction] = useDislikeTrackMutation()
-  const [removeReaction] = useRemoveReactionTrackMutation()
+  const { handleLike, handleDislike, handleRemove } = useReactions('track')
   const dataAtr = track.attributes
   const dataRelationships = track.relationships
   const thumbnailCover = dataAtr.images.main.find(
@@ -43,18 +37,6 @@ export const CardTrack = ({ track, included }: Props) => {
       ? getArtistsNames(dataRelationships, included)
       : 'Unknown Artist'
 
-  const handleLikeReaction = (trackId: string) => {
-    postLikeReaction({ trackId })
-  }
-
-  const handleDisLikeReaction = (trackId: string) => {
-    postDislikeReaction({ trackId })
-  }
-
-  const handleRemoveReaction = (trackId: string) => {
-    removeReaction({ trackId })
-  }
-
   return (
     <div className={s.card}>
       <img src={src} alt="Cover" width={'174px'} className={s.cover} />
@@ -64,16 +46,16 @@ export const CardTrack = ({ track, included }: Props) => {
         <ButtonReaction
           variant="like"
           elemId={track.id}
-          handleReaction={handleLikeReaction}
-          removeReaction={handleRemoveReaction}
+          handleReaction={handleLike}
+          removeReaction={handleRemove}
           userReaction={dataAtr.currentUserReaction}
           likesCount={dataAtr.likesCount}
         />
         <ButtonReaction
           variant="dislike"
           elemId={track.id}
-          handleReaction={handleDisLikeReaction}
-          removeReaction={handleRemoveReaction}
+          handleReaction={handleDislike}
+          removeReaction={handleRemove}
           userReaction={dataAtr.currentUserReaction}
         />
       </div>
