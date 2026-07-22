@@ -5,6 +5,7 @@ import { useGetMeQuery } from '@/features/auth/api/authApi'
 import { useFetchPlaylistsQuery } from '@/features/playlists/api/playlistsApi'
 import { CardPlalist } from '@/common/components/CardPlaylist/CardPlaylist'
 import { useFetchTracksListQuery } from '@/features/tracks/api/tracksApi'
+import { PlaylistsContainer } from '@/features/playlists/ui'
 
 const tags = ['Playlists', 'Artists', 'Albums', 'Podcast', 'Podcasts & shows']
 
@@ -20,7 +21,8 @@ export const MainPage = () => {
   return (
     <div className={s.wrapMainPage}>
       <HeaderMainPage data={data} />
-      <HorizontalScroll gap={8} padding="12px 0">
+      <PlaylistsContainer optionList="grid" optionCard="medium" />
+      {/* <HorizontalScroll gap={8} padding="12px 0">
         {tags.map(tag => (
           <Chip label={tag} key={tag} isAuth={isAuth} />
         ))}
@@ -36,7 +38,7 @@ export const MainPage = () => {
         {newTracks?.data.map(track => (
           <CardTrack track={track} included={included} />
         ))}
-      </HorizontalScroll>
+      </HorizontalScroll> */}
     </div>
   )
 }

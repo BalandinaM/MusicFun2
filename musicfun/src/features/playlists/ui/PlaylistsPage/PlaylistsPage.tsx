@@ -1,5 +1,4 @@
 import { useState, type ChangeEvent } from 'react'
-import { CreatePlaylistForm } from './CreatePlaylistForm/CreatePlaylistForm'
 import s from './PlaylistsPage.module.css'
 import { useFetchPlaylistsQuery } from '../../api/playlistsApi'
 import { useDebounceValue } from '@/common/hooks'

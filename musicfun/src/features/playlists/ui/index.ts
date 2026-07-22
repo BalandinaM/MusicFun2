@@ -2,3 +2,4 @@ export { CreatePlaylistForm } from './PlaylistsPage/CreatePlaylistForm/CreatePla
 export { EditPlaylistForm } from './PlaylistsPage/EditPlaylistForm/EditPlaylistForm'
 export { PlaylistItem } from './PlaylistsPage/PlaylistItem/PlaylistItem'
 export { PlaylistsPage } from './PlaylistsPage/PlaylistsPage'
+export { PlaylistsContainer } from './PlaylistsContainer/PlaylistsContainer'

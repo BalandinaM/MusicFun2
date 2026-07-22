@@ -16,7 +16,7 @@ export const HorizontalScroll = ({
   padding = '16px 0',
   scrollBehavior = 'smooth',
 }: HorizontalScrollProps) => {
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLUListElement>(null)
 
   //   // Опционально: скролл по колесику мыши
   //   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
@@ -26,7 +26,7 @@ export const HorizontalScroll = ({
   //   }
 
   return (
-    <div
+    <ul
       ref={scrollRef}
       className={`${s.scrollContainer} ${className}`}
       style={{
@@ -37,6 +37,6 @@ export const HorizontalScroll = ({
       //   onWheel={handleWheel}
     >
       {children}
-    </div>
+    </ul>
   )
 }

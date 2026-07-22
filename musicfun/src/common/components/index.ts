@@ -1,7 +1,6 @@
 export { AllPlaylistsIcon } from './Icons/AllPlaylistsIcon'
 export { Chip } from './Chip/Chip'
 export { DislikeIcon } from './Icons/DislikeIcon'
-export { Header } from './Header/Header'
 export { HomeIcon } from './Icons/HomeIcon'
 export { HorizontalScroll } from './HorizontalScroll/HorizontalScroll'
 export { LibraryIcon } from './Icons/LibraryIcon'
