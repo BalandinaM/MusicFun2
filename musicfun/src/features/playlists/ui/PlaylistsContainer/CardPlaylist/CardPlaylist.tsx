@@ -2,7 +2,7 @@ import type { PlaylistData } from '@/features/playlists/api'
 import defaultCover from '@/assets/images/defaultCover.png'
 import s from './CardPlaylist.module.css'
 import { getDaysAgoText } from '@/common/utils'
-import { ButtonReaction } from '../ButtonReaction/ButtonReaction'
+import { ButtonReaction } from '../../../../../common/components/ButtonReaction/ButtonReaction'
 import { useReactions } from '@/common/hooks'
 import type { OptionCard } from '@/features/playlists/ui/PlaylistsContainer/PlaylistsContainer'
 
@@ -11,7 +11,7 @@ type Props = {
   optionCard: OptionCard
 }
 
-export const CardPlalist = ({ playlist, optionCard }: Props) => {
+export const CardPlaylist = ({ playlist, optionCard }: Props) => {
   const { handleLike, handleDislike, handleRemove } = useReactions('playlist')
   const data = playlist.attributes
   const thumbnailCover = data.images.main.find(img => img.type === 'thumbnail')

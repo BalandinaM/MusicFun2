@@ -20,8 +20,9 @@
 //модалка для редактирования плейлиста
 //модалка для выбора плейлистав который положить загруженый трек
 
-import { CardPlalist, HorizontalScroll } from '@/common/components'
+import { HorizontalScroll } from '@/common/components'
 import { useFetchPlaylistsQuery } from '../../api/playlistsApi'
+import { CardPlaylist } from './CardPlaylist/CardPlaylist'
 
 type OptionList = 'scroll' | 'grid'
 export type OptionCard = 'big' | 'medium' | 'small' | 'small-with-reaction'
@@ -38,7 +39,7 @@ export const PlaylistsContainer = ({ optionList, optionCard }: Props) => {
   if (!playlists?.data.length) return <div>No playlists found</div>
 
   const cards = playlists.data.map(playlist => (
-    <CardPlalist
+    <CardPlaylist
       key={playlist.id}
       playlist={playlist}
       optionCard={optionCard}

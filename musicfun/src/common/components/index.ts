@@ -14,6 +14,5 @@ export { PageSizeSelector } from './Pagination/PageSizeSelector/PageSizeSelector
 export { Pagination } from './Pagination/Pagination'
 export { PaginationControls } from './Pagination/PaginationControls/PaginationControls'
 export { TracksIcon } from './Icons/TracksIcon'
-export { CardPlalist } from './CardPlaylist/CardPlaylist'
 export { ButtonReaction } from './ButtonReaction/ButtonReaction'
 export { CardTrack } from './CardTrack/CardTrack'
