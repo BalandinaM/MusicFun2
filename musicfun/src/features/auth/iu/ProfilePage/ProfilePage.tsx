@@ -1,5 +1,5 @@
 import { useFetchPlaylistsQuery } from '@/features/playlists/api/playlistsApi'
-import { PlaylistsList } from '@/features/playlists/ui/PlaylistsPage/PlaylistsList/PlaylistsList'
+import { PlaylistsList } from '@/features/playlists/ui/PlaylistsPage1/PlaylistsList/PlaylistsList'
 import { useGetMeQuery } from '../../api/authApi'
 import { CreatePlaylistForm } from '@/features/playlists/ui'
 import s from './ProfilePage.module.css'

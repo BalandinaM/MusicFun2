@@ -6,16 +6,16 @@ type Props = {
   currentPage: number
   setCurrentPage: (page: number) => void
   pagesCount: number
-  pageSize: number
-  changePageSize: (size: number) => void
+  pageSize?: number
+  changePageSize?: (size: number) => void
 }
 
 export const Pagination = ({
   currentPage,
   setCurrentPage,
   pagesCount,
-  pageSize,
-  changePageSize,
+  // pageSize,
+  // changePageSize,
 }: Props) => {
   if (pagesCount <= 1) return null
 
@@ -26,7 +26,7 @@ export const Pagination = ({
         setCurrentPage={setCurrentPage}
         pagesCount={pagesCount}
       />
-      <PageSizeSelector pageSize={pageSize} changePageSize={changePageSize} />
+      {/* <PageSizeSelector pageSize={pageSize} changePageSize={changePageSize} /> */}
     </div>
   )
 }

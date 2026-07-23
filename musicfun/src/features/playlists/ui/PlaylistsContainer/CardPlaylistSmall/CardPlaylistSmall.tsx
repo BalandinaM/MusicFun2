@@ -18,10 +18,12 @@ export const CardPlaylistSmall = ({ playlist, variant = 'full' }: Props) => {
   return (
     <li className={s.card}>
       <img src={src} alt={data.title} width={60} height={60} />
-      <h4 className="text-body-md text-truncate">{data.title}</h4>
-      <p className="text-body-sm text-truncate">
-        Playlist • {data.tracksCount} Tracks
-      </p>
+      <div className={s.wrapText}>
+        <h4 className="text-body-md text-truncate">{data.title}</h4>
+        <p className="text-body-sm text-truncate">
+          Playlist • {data.tracksCount} Tracks
+        </p>
+      </div>
       {variant !== 'no-buttons' && (
         <div className={s.wrapButton}>
           {variant !== 'no-likes' && (

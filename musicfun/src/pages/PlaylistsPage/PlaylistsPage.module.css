@@ -1,0 +1,26 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-right: 16px;
+  height: 100vh;
+  overflow: hidden;
+  padding-bottom: 110px;
+}
+
+.header {
+  flex-shrink: 0; /* 👈 Не сжимается */
+  background: var(--color-dark);
+  z-index: 10;
+}
+
+/* 👇 КОНТЕНТ — скроллится под шапкой */
+.content {
+  flex: 1; /* 👈 Занимает всё оставшееся место */
+  overflow-y: auto; /* 👈 Скролл по вертикали */
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 24px;
+}

@@ -1,14 +1,22 @@
 .card {
-  width: 190px;
+  width: 100%;
   height: auto;
-  padding: 8px;
+  /* padding: 8px; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-black);
+}
+
+.wrapText {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  background: var(--color-black-50);
+  justify-content: center;
 }
 
 .wrapButton {
+  margin-left: auto;
   display: flex;
   gap: 6px;
   align-items: flex-start;
