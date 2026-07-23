@@ -3,17 +3,23 @@ import { HeaderMainPage } from './HeaderMainPage'
 import s from './MainPage.module.css'
 import { useGetMeQuery } from '@/features/auth/api/authApi'
 import { useFetchTracksListQuery } from '@/features/tracks/api/tracksApi'
-import { PlaylistsContainer } from '@/features/playlists/ui'
+import { useFetchPlaylistsQuery } from '@/features/playlists/api/playlistsApi'
+import { CardPlaylist } from '@/features/playlists/ui'
 
 const tags = ['Playlists', 'Artists', 'Albums', 'Podcast', 'Podcasts & shows']
 
 export const MainPage = () => {
   const { data } = useGetMeQuery()
 
-  const { data: newTracks } = useFetchTracksListQuery({})
+  const { data: newTracks, isLoading: isLoadingTracks } =
+    useFetchTracksListQuery({})
+  const { data: playlists, isLoading: isLoadingPlaylists } =
+    useFetchPlaylistsQuery({})
 
   const included = newTracks?.included
   const isAuth = !!data
+
+  if (isLoadingTracks || isLoadingPlaylists) return <div>Loading...</div>
 
   return (
     <div className={s.wrapMainPage}>
@@ -24,7 +30,11 @@ export const MainPage = () => {
         ))}
       </HorizontalScroll>
       <h2>New playlists</h2>
-      <PlaylistsContainer optionList="scroll" optionCard="medium" />
+      <HorizontalScroll>
+        {playlists?.data.map(playlist => (
+          <CardPlaylist key={playlist.id} playlist={playlist} />
+        ))}
+      </HorizontalScroll>
       <h2>New Tracks</h2>
       <HorizontalScroll gap={8} padding="12px 0">
         {newTracks?.data.map(track => (

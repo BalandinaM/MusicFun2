@@ -1,7 +1,7 @@
 import { getPlaylistCover } from '@/common/utils'
-import type { OptionCard } from '../../PlaylistsContainer'
 import s from './PlaylistCover.module.css'
 
+export type OptionCard = 'big' | 'medium' | 'small' | 'small-with-reaction'
 type CoverSize = 'thumbnail' | 'medium' | 'original'
 
 type Props = {

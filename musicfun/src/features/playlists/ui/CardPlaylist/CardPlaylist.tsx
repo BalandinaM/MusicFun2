@@ -2,12 +2,10 @@ import type { PlaylistData } from '@/features/playlists/api'
 import s from './CardPlaylist.module.css'
 import { getDaysAgoText, getPlaylistCover } from '@/common/utils'
 import { useReactions } from '@/common/hooks'
-import type { OptionCard } from '@/features/playlists/ui/PlaylistsContainer/PlaylistsContainer'
 import { ButtonsBlock } from '@/common/components'
 
 type Props = {
   playlist: PlaylistData
-  optionCard: OptionCard
 }
 
 export const CardPlaylist = ({ playlist }: Props) => {

@@ -1,16 +1,17 @@
 import { Pagination } from '@/common/components'
 import { useFetchPlaylistsQuery } from '@/features/playlists/api/playlistsApi'
-import { PlaylistList } from '@/features/playlists/ui'
 import { useState } from 'react'
 import s from './PlaylistsPage.module.css'
+import { PlaylistsList } from '@/features/playlists/ui'
+
+const PAGE_SIZE = 10
 
 export const PlaylistsPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
-  const [pageSize, setPageSize] = useState(10)
 
   const { data: playlists, isLoading } = useFetchPlaylistsQuery({
     pageNumber: currentPage,
-    pageSize: pageSize,
+    pageSize: PAGE_SIZE,
   })
 
   if (isLoading) return <div>Loading...</div>
@@ -42,7 +43,7 @@ export const PlaylistsPage = () => {
         </div>
       </div>
       <div className={s.content}>
-        <PlaylistList playlists={playlists.data} variant="full" />
+        <PlaylistsList playlists={playlists.data} variant="full" />
         <Pagination
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}

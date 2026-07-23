@@ -6,7 +6,7 @@ type Props = {
   variant?: 'full' | 'no-likes' | 'no-buttons'
 }
 
-export const PlaylistList = ({ playlists, variant }: Props) => {
+export const PlaylistsList = ({ playlists, variant }: Props) => {
   return (
     <ul className={s.list}>
       {playlists.map(playlist => (
