@@ -7,6 +7,15 @@
   gap: 4px;
   background: var(--color-black-50);
 }
+.card-small-with-reaction {
+  width: 328px;
+  height: 60px;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  background: var(--color-dark);
+}
 
 .cover {
   width: 174px;
@@ -14,8 +23,14 @@
   object-fit: cover;
 }
 
+.cover-small-with-reaction {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
 .wrapButton {
   display: flex;
-  gap: 4px;
+  gap: 6px;
   align-items: flex-start;
 }
