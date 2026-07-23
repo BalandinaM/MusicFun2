@@ -16,3 +16,5 @@ export { PaginationControls } from './Pagination/PaginationControls/PaginationCo
 export { TracksIcon } from './Icons/TracksIcon'
 export { ButtonReaction } from './ButtonReaction/ButtonReaction'
 export { CardTrack } from './CardTrack/CardTrack'
+export { ButtonMenu } from './ButtonMenu/ButtonMenu'
+export { ButtonsBlock } from './ButtonsBlock/ButtonsBlock'
