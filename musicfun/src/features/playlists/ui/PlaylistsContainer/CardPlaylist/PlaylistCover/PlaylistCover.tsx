@@ -26,12 +26,7 @@ const SIZE_MAP: Record<CoverSize, { width: number; height: number }> = {
   original: { width: 288, height: 289 },
 }
 
-export const PlaylistCover = ({
-  images,
-  optionCard,
-  alt = 'Cover',
-  className,
-}: Props) => {
+export const PlaylistCover = ({ images, optionCard, alt = 'Cover' }: Props) => {
   // 👇 По optionCard определяем, какой размер из API брать
   const size = coverSizeMap[optionCard]
 

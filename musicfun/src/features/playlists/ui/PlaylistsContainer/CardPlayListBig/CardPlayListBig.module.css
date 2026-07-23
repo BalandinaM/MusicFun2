@@ -1,0 +1,16 @@
+.card {
+}
+.card-small-with-reaction {
+}
+
+.cover {
+}
+
+.cover-small-with-reaction {
+}
+
+.wrapButton {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+}

@@ -2,8 +2,6 @@ import { CardTrack, Chip, HorizontalScroll } from '@/common/components'
 import { HeaderMainPage } from './HeaderMainPage'
 import s from './MainPage.module.css'
 import { useGetMeQuery } from '@/features/auth/api/authApi'
-import { useFetchPlaylistsQuery } from '@/features/playlists/api/playlistsApi'
-import { CardPlalist } from '@/features/playlists/ui/PlaylistsContainer/CardPlaylist/CardPlaylist'
 import { useFetchTracksListQuery } from '@/features/tracks/api/tracksApi'
 import { PlaylistsContainer } from '@/features/playlists/ui'
 

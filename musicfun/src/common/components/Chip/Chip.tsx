@@ -4,7 +4,7 @@ type ChipProps = {
   label: string
   className?: string
   onClick?: () => void
-  isAuth: boolean
+  isAuth?: boolean
 }
 
 export const Chip = ({ label, className, onClick, isAuth }: ChipProps) => {
