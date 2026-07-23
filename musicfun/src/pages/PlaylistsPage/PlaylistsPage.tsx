@@ -1,18 +1,27 @@
-import { Pagination } from '@/common/components'
+import { Pagination, SearchInput } from '@/common/components'
 import { useFetchPlaylistsQuery } from '@/features/playlists/api/playlistsApi'
-import { useState } from 'react'
+import { useState, type ChangeEvent } from 'react'
 import s from './PlaylistsPage.module.css'
 import { PlaylistsList } from '@/features/playlists/ui'
+import { useDebounceValue } from '@/common/hooks'
 
 const PAGE_SIZE = 10
 
 export const PlaylistsPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
+  const [search, setSearch] = useState('')
 
+  const debounceSearch = useDebounceValue(search)
   const { data: playlists, isLoading } = useFetchPlaylistsQuery({
+    search: debounceSearch,
     pageNumber: currentPage,
     pageSize: PAGE_SIZE,
   })
+
+  const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.currentTarget.value)
+    setCurrentPage(1)
+  }
 
   if (isLoading) return <div>Loading...</div>
   if (!playlists?.data.length) return <div>No playlists found</div>
@@ -21,7 +30,10 @@ export const PlaylistsPage = () => {
     <section className={s.section}>
       <div className={s.header}>
         <h1>All playlists</h1>
-        <p>Сюда встанет инпут, его вынести в отдельный компонент надо</p>
+        <SearchInput
+          callback={searchHandler}
+          placeholder={'Search playlist by title'}
+        />
         <h4>Hashtags</h4>
         <div
           style={{
