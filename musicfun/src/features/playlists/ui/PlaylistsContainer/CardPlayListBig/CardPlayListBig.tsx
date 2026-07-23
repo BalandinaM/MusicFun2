@@ -1,26 +1,21 @@
 import type { PlaylistData } from '@/features/playlists/api'
 import s from './CardPlayListBig.module.css'
 import { useReactions } from '@/common/hooks'
-import type { OptionCard } from '@/features/playlists/ui/PlaylistsContainer/PlaylistsContainer'
 import { ButtonsBlock, Chip, HorizontalScroll } from '@/common/components'
-import { PlaylistCover } from '../CardPlaylist/PlaylistCover/PlaylistCover'
+import { getPlaylistCover } from '@/common/utils'
 
 type Props = {
   playlist: PlaylistData
-  optionCard: OptionCard
 }
 
-export const CardPlaylistBig = ({ playlist, optionCard }: Props) => {
+export const CardPlaylistBig = ({ playlist }: Props) => {
   const { handleLike, handleDislike, handleRemove } = useReactions('playlist')
   const data = playlist.attributes
+  const src = getPlaylistCover(data.images, 'original')
 
   return (
     <li className={s.card}>
-      <PlaylistCover
-        images={data.images}
-        alt={'title playlist'}
-        optionCard={optionCard}
-      />
+      <img src={src} alt={data.title} width={288} height={288} />
       <h4 className="text-heading-playlist text-truncate">{data.title}</h4>
       <HorizontalScroll gap={8} padding="12px 0">
         {data.tags.map(tag => (

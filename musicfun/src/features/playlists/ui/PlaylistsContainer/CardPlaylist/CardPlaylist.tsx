@@ -1,27 +1,23 @@
 import type { PlaylistData } from '@/features/playlists/api'
 import s from './CardPlaylist.module.css'
-import { getDaysAgoText } from '@/common/utils'
+import { getDaysAgoText, getPlaylistCover } from '@/common/utils'
 import { useReactions } from '@/common/hooks'
 import type { OptionCard } from '@/features/playlists/ui/PlaylistsContainer/PlaylistsContainer'
 import { ButtonsBlock } from '@/common/components'
-import { PlaylistCover } from './PlaylistCover/PlaylistCover'
 
 type Props = {
   playlist: PlaylistData
   optionCard: OptionCard
 }
 
-export const CardPlaylist = ({ playlist, optionCard }: Props) => {
+export const CardPlaylist = ({ playlist }: Props) => {
   const { handleLike, handleDislike, handleRemove } = useReactions('playlist')
   const data = playlist.attributes
+  const src = getPlaylistCover(data.images, 'medium')
 
   return (
     <li className={s.card}>
-      <PlaylistCover
-        images={data.images}
-        alt={'title playlist'}
-        optionCard={optionCard}
-      />
+      <img src={src} alt={data.title} width={174} height={153} />
       <h4 className="text-body-md text-truncate">{data.title}</h4>
       <p className="text-meta text-truncate">
         Made for
