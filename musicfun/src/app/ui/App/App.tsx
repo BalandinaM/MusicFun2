@@ -1,6 +1,5 @@
 import { LinearProgress, NavMenu } from '@/common/components'
 import { Routing } from '@/common/routing/Routing'
-import s from './App.module.css'
 import { useGlobalLoading } from '@/common/hooks/useGlobalLoading'
 import { Toaster } from 'sonner'
 
@@ -10,9 +9,7 @@ function App() {
   return (
     <div className="container">
       {isGlobalLoading && <LinearProgress />}
-      <div className={s.layout}>
-        <Routing />
-      </div>
+      <Routing />
       <NavMenu />
       <Toaster position="top-right" richColors />
     </div>

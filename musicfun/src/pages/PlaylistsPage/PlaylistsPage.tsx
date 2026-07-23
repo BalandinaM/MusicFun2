@@ -1,7 +1,6 @@
 import { Pagination } from '@/common/components'
 import { useFetchPlaylistsQuery } from '@/features/playlists/api/playlistsApi'
 import { PlaylistList } from '@/features/playlists/ui'
-import { CardPlaylistSmall } from '@/features/playlists/ui/PlaylistsContainer/CardPlaylistSmall/CardPlaylistSmall'
 import { useState } from 'react'
 import s from './PlaylistsPage.module.css'
 

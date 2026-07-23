@@ -2,9 +2,5 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  /* margin-bottom: 70px; */
+  padding: 16px 0 110px 16px;
 }
-/* .wrapTags {
-  display: flex;
-  gap: 8px;
-} */

@@ -1,6 +1,6 @@
 :root {
   /* Ширина контейнера */
-  --container-max-width: 1720px;
+  --container-max-width: 1186px;
   --container-min-width: 360px;
 
   /* Отступы */
@@ -127,10 +127,11 @@ body {
   max-width: var(--container-max-width); /* 1720px */
   min-width: var(--container-min-width); /* 360px */
   margin: 0 auto;
-  padding: 0 var(--container-padding);
+  /* padding: 0 var(--container-padding); */
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
   width: 100%;
+  height: 100vh;
 }
 
 /* Скрытие элемента визуально, но для скринридеров */
