@@ -1,0 +1,7 @@
+.button {
+  width: 27px;
+  height: 27px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
