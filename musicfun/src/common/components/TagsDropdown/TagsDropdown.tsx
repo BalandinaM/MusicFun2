@@ -1,0 +1,94 @@
+// 📁 common/components/TagsDropdown/TagsDropdown.tsx
+
+import { useState } from 'react'
+import s from './TagsDropdown.module.css'
+import { Chip } from '../Chip/Chip'
+import { ArrowDownIcon } from '../Icons'
+
+type Tag = {
+  id: string
+  name: string
+}
+
+type Props = {
+  tags: Tag[]
+  selectedTags: Tag[]
+  onToggleTag: (tag: Tag) => void
+  onRemoveTag?: (tag: Tag) => void
+  maxVisible?: number
+  isAuth?: boolean
+}
+
+export const TagsDropdown = ({
+  tags,
+  selectedTags,
+  onToggleTag,
+  onRemoveTag,
+  maxVisible = 5,
+  isAuth = false,
+}: Props) => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const visibleTags = selectedTags.slice(0, maxVisible)
+  const hiddenCount = selectedTags.length - maxVisible
+
+  const handleChipClick = () => {
+    setIsOpen(!isOpen)
+  }
+
+  const handleToggle = (tag: Tag) => {
+    onToggleTag(tag)
+  }
+
+  const handleRemove = (tag: Tag) => {
+    onRemoveTag?.(tag)
+  }
+
+  return (
+    <div className={s.wrap}>
+      <div className={s.chips} onClick={handleChipClick}>
+        {selectedTags.length === 0 ? (
+          <span className={s.placeholder}>Select tags...</span>
+        ) : (
+          <>
+            {visibleTags.map(tag => (
+              <Chip
+                key={tag.id}
+                label={tag.name}
+                isAuth={isAuth}
+                className={s.chip}
+                removable={true}
+                onRemove={() => handleRemove(tag)}
+              />
+            ))}
+
+            {hiddenCount > 0 && (
+              <span className={s.more}>and {hiddenCount} more</span>
+            )}
+          </>
+        )}
+
+        <ArrowDownIcon className={`${s.chevron} ${isOpen ? s.open : ''}`} />
+      </div>
+
+      {isOpen && (
+        <div className={s.dropdown}>
+          {tags.map(tag => {
+            const isSelected = selectedTags.some(t => t.id === tag.id)
+
+            return (
+              <label key={tag.id} className={s.option}>
+                <input
+                  type="checkbox"
+                  checked={isSelected}
+                  onChange={() => handleToggle(tag)}
+                />
+                <span>#{tag.name}</span>
+              </label>
+            )
+          })}
+        </div>
+      )}
+    </div>
+  )
+}

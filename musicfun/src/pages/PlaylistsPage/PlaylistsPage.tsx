@@ -1,15 +1,28 @@
-import { Pagination, SearchInput } from '@/common/components'
+import { Pagination, SearchInput, TagsDropdown } from '@/common/components'
 import { useFetchPlaylistsQuery } from '@/features/playlists/api/playlistsApi'
 import { useState, type ChangeEvent } from 'react'
 import s from './PlaylistsPage.module.css'
 import { PlaylistsList } from '@/features/playlists/ui'
 import { useDebounceValue } from '@/common/hooks'
+import type { Tag } from '@/common/types'
 
 const PAGE_SIZE = 10
+
+const allTags = [
+  { id: '1', name: 'Playlists' },
+  { id: '2', name: 'Artists' },
+  { id: '3', name: 'Albums' },
+  { id: '4', name: 'Podcast' },
+  { id: '5', name: 'Rock' },
+  { id: '6', name: 'Indie' },
+  { id: '7', name: 'Pop' },
+  { id: '8', name: 'Jazz' },
+]
 
 export const PlaylistsPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [search, setSearch] = useState('')
+  const [selectedTags, setSelectedTags] = useState(allTags.slice(0, 3))
 
   const debounceSearch = useDebounceValue(search)
   const { data: playlists, isLoading } = useFetchPlaylistsQuery({
@@ -18,13 +31,25 @@ export const PlaylistsPage = () => {
     pageSize: PAGE_SIZE,
   })
 
+  if (isLoading) return <div>Loading...</div>
+  if (!playlists?.data.length) return <div>No playlists found</div>
+
   const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.currentTarget.value)
     setCurrentPage(1)
   }
 
-  if (isLoading) return <div>Loading...</div>
-  if (!playlists?.data.length) return <div>No playlists found</div>
+  const handleToggleTag = (tag: Tag) => {
+    setSelectedTags(prev =>
+      prev.some(t => t.id === tag.id)
+        ? prev.filter(t => t.id !== tag.id)
+        : [...prev, tag]
+    )
+  }
+
+  const handleRemoveTag = (tag: Tag) => {
+    setSelectedTags(prev => prev.filter(t => t.id !== tag.id))
+  }
 
   return (
     <section className={s.section}>
@@ -35,15 +60,14 @@ export const PlaylistsPage = () => {
           placeholder={'Search playlist by title'}
         />
         <h4>Hashtags</h4>
-        <div
-          style={{
-            width: '328px',
-            height: '48px',
-            backgroundColor: 'blueviolet',
-          }}
-        >
-          ХЭШТЕГИ
-        </div>
+        <TagsDropdown
+          tags={allTags}
+          selectedTags={selectedTags}
+          onToggleTag={handleToggleTag}
+          onRemoveTag={handleRemoveTag}
+          maxVisible={4}
+          isAuth={true}
+        />
         <div
           style={{
             width: '328px',

@@ -1,4 +1,3 @@
-// src/components/icons/HeartFilledIcon.tsx
 import type { SVGProps } from 'react'
 
 export const DislikeIcon = (props: SVGProps<SVGSVGElement>) => (
