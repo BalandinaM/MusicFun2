@@ -65,7 +65,7 @@ export const PlaylistsPage = () => {
           selectedTags={selectedTags}
           onToggleTag={handleToggleTag}
           onRemoveTag={handleRemoveTag}
-          maxVisible={4}
+          maxVisible={2}
           isAuth={true}
         />
         <div

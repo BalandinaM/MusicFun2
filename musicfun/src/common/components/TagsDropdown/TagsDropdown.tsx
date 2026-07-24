@@ -1,5 +1,3 @@
-// 📁 common/components/TagsDropdown/TagsDropdown.tsx
-
 import { useState } from 'react'
 import s from './TagsDropdown.module.css'
 import { Chip } from '../Chip/Chip'
@@ -63,7 +61,7 @@ export const TagsDropdown = ({
             ))}
 
             {hiddenCount > 0 && (
-              <span className={s.more}>and {hiddenCount} more</span>
+              <span className="text-tag-link">and {hiddenCount} more</span>
             )}
           </>
         )}
@@ -77,7 +75,10 @@ export const TagsDropdown = ({
             const isSelected = selectedTags.some(t => t.id === tag.id)
 
             return (
-              <label key={tag.id} className={s.option}>
+              <label
+                key={tag.id}
+                className={`${s.option} ${isSelected ? s.selected : ''}`}
+              >
                 <input
                   type="checkbox"
                   checked={isSelected}

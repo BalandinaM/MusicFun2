@@ -1,22 +1,3 @@
-// import s from './Chip.module.css'
-
-// type ChipProps = {
-//   label: string
-//   className?: string
-//   onClick?: () => void
-//   isAuth?: boolean
-// }
-
-// export const Chip = ({ label, className, onClick, isAuth }: ChipProps) => {
-//   return (
-//     <div className={s.wrap}>
-//       <span className={`text-menu-chip ${className || ''}`} onClick={onClick}>
-//         {isAuth ? `#${label}` : `${label}`}
-//       </span>
-//     </div>
-//   )
-// }
-
 import { CloseIcon } from '@/common/components/Icons'
 import s from './Chip.module.css'
 
@@ -39,7 +20,7 @@ export const Chip = ({
 }: ChipProps) => {
   return (
     <div className={`${s.wrap} ${className || ''}`}>
-      <span className={s.label} onClick={onClick}>
+      <span className="text-menu-chip" onClick={onClick}>
         {isAuth ? `#${label}` : label}
       </span>
 

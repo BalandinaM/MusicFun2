@@ -1,44 +1,26 @@
 .wrap {
   display: flex;
-  border: 0.6px solid #7f7f7f;
-  border-radius: 45px;
-  padding: 8px 19px;
+  gap: 4px;
+  border: 1px solid var(--color-light);
+  border-radius: 100px;
+  padding: 4px 8px;
   width: fit-content;
-  height: 30px;
   justify-content: center;
   align-items: center;
   background-color: var(--color-dark);
 }
 
-.label {
-  font-family: var(--font-primary);
-  font-weight: 500;
-  font-size: 12px;
-  color: #ffffff;
-  cursor: default;
-}
-
-/* 👇 Кнопка удаления */
 .removeBtn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  height: 16px;
+  width: 13px;
+  height: 13px;
+  color: var(--color-gray-300);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
   border: none;
   cursor: pointer;
   padding: 0;
   transition: background 0.2s ease;
-}
-
-.removeBtn:hover {
-  background: rgba(255, 255, 255, 0.25);
-}
-
-.closeIcon {
-  width: 10px;
-  height: 10px;
-  color: rgba(255, 255, 255, 0.7);
 }
