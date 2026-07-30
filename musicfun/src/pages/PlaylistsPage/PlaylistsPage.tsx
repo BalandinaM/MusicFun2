@@ -1,10 +1,17 @@
-import { Pagination, SearchInput, TagsDropdown } from '@/common/components'
+import {
+  Pagination,
+  SearchInput,
+  SortDropdown,
+  TagsDropdown,
+} from '@/common/components'
 import { useFetchPlaylistsQuery } from '@/features/playlists/api/playlistsApi'
 import { useState, type ChangeEvent } from 'react'
 import s from './PlaylistsPage.module.css'
 import { PlaylistsList } from '@/features/playlists/ui'
 import { useDebounceValue } from '@/common/hooks'
 import type { Tag } from '@/common/types'
+import type { SortDirection, SortOption } from '@/features/playlists/api'
+import { useSearchParams } from 'react-router'
 
 const PAGE_SIZE = 10
 
@@ -20,13 +27,24 @@ const allTags = [
 ]
 
 export const PlaylistsPage = () => {
-  const [currentPage, setCurrentPage] = useState(1)
-  const [search, setSearch] = useState('')
+  // const [currentPage, setCurrentPage] = useState(1)
+  // const [search, setSearch] = useState('')
   const [selectedTags, setSelectedTags] = useState(allTags.slice(0, 3))
+  const [searchParams, setSearchParams] = useSearchParams()
+  const search = searchParams.get('search') || ''
+  const sortBy = (searchParams.get('sortBy') as SortOption) || 'addedAt'
+  const sortDirection =
+    (searchParams.get('sortDirection') as SortDirection) || 'desc'
+  const currentPage = Number(searchParams.get('page')) || 1
 
   const debounceSearch = useDebounceValue(search)
+  const debounceSortBy = useDebounceValue(sortBy)
+  const debounceSortDirection = useDebounceValue(sortDirection)
+
   const { data: playlists, isLoading } = useFetchPlaylistsQuery({
     search: debounceSearch,
+    sortBy: debounceSortBy,
+    sortDirection: debounceSortDirection,
     pageNumber: currentPage,
     pageSize: PAGE_SIZE,
   })
@@ -34,9 +52,44 @@ export const PlaylistsPage = () => {
   if (isLoading) return <div>Loading...</div>
   if (!playlists?.data.length) return <div>No playlists found</div>
 
+  const updateFilters = (
+    updates: Record<string, string | number | null | undefined>,
+    options?: { resetSort?: boolean }
+  ) => {
+    setSearchParams(prev => {
+      const params = new URLSearchParams(prev)
+
+      Object.entries(updates).forEach(([key, value]) => {
+        if (value === undefined || value === null || value === '') {
+          params.delete(key)
+        } else {
+          params.set(key, String(value))
+        }
+      })
+
+      if (options?.resetSort) {
+        params.delete('sortBy')
+        params.delete('sortDirection')
+      }
+
+      params.set('page', '1')
+
+      return params
+    })
+  }
+
   const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.currentTarget.value)
-    setCurrentPage(1)
+    updateFilters({ search: e.currentTarget.value }, { resetSort: true })
+  }
+
+  const handleSortChange = (
+    nextSortBy: SortOption,
+    nextSortDirection: SortDirection
+  ) => {
+    updateFilters({
+      sortBy: nextSortBy,
+      sortDirection: nextSortDirection,
+    })
   }
 
   const handleToggleTag = (tag: Tag) => {
@@ -49,6 +102,14 @@ export const PlaylistsPage = () => {
 
   const handleRemoveTag = (tag: Tag) => {
     setSelectedTags(prev => prev.filter(t => t.id !== tag.id))
+  }
+
+  const handlePageChange = (page: number) => {
+    setSearchParams(prev => {
+      const params = new URLSearchParams(prev)
+      params.set('page', String(page))
+      return params
+    })
   }
 
   return (
@@ -68,21 +129,17 @@ export const PlaylistsPage = () => {
           maxVisible={2}
           isAuth={true}
         />
-        <div
-          style={{
-            width: '328px',
-            height: '22px',
-            backgroundColor: 'blue',
-          }}
-        >
-          СОРТИРОВКА
-        </div>
+        <SortDropdown
+          sortBy={sortBy}
+          sortDirection={sortDirection}
+          onSortChange={handleSortChange}
+        />
       </div>
       <div className={s.content}>
         <PlaylistsList playlists={playlists.data} variant="full" />
         <Pagination
           currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
+          setCurrentPage={handlePageChange}
           pagesCount={playlists?.meta.pagesCount || 1}
         />
       </div>

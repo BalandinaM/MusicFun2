@@ -9,4 +9,6 @@ export type {
   UpdatePlaylistArgs,
   ReactionPlaylistRequest,
   ReactionPlaylistResponse,
+  SortOption,
+  SortDirection,
 } from './playlistsApi.types'
