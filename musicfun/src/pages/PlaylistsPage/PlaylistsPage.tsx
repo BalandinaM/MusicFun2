@@ -114,12 +114,12 @@ export const PlaylistsPage = () => {
   return (
     <section className={s.section}>
       <div className={s.header}>
-        <PageTitle>All playlists</PageTitle>
+        <PageTitle className={s.title}>All playlists</PageTitle>
         <SearchInput
           callback={searchHandler}
           placeholder={'Search playlist by title'}
         />
-        <h4>Hashtags</h4>
+        <h4 className={s.subtitle}>Hashtags</h4>
         <TagsDropdown
           tags={allTags}
           selectedTags={selectedTags}
