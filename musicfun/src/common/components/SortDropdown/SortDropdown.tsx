@@ -1,5 +1,8 @@
+import { useEffect, useRef, useState } from 'react'
 import type { SortDirection, SortOption } from '@/features/playlists/api'
 import { SORT_OPTIONS } from '@/features/playlists/model'
+import { ArrowDownIcon } from '../Icons'
+import s from './SortDropdown.module.css'
 
 type Props = {
   sortBy: SortOption
@@ -12,28 +15,74 @@ export const SortDropdown = ({
   sortDirection,
   onSortChange,
 }: Props) => {
-  const value = `${sortBy}:${sortDirection}`
+  const [isOpen, setIsOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement | null>(null)
+
+  const selectedOption = SORT_OPTIONS.find(
+    item => item.sortBy === sortBy && item.direction === sortDirection
+  )
+
+  const handleToggle = () => {
+    setIsOpen(prev => !prev)
+  }
+
+  const handleOptionClick = (
+    sortByOption: SortOption,
+    direction: SortDirection
+  ) => {
+    onSortChange(sortByOption, direction)
+    setIsOpen(false)
+  }
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isOpen])
 
   return (
-    <select
-      value={value}
-      onChange={e => {
-        const [nextSortBy, nextSortDirection] = e.target.value.split(':') as [
-          SortOption,
-          SortDirection,
-        ]
+    <div className={s.wrapper} ref={dropdownRef}>
+      <div className={s.control}>
+        <span className={`text-body-lg ${s.label}`}>Sort By</span>
+        <span className={`text-body-md-underline ${s.selectedValue}`}>
+          {selectedOption?.name}
+        </span>
+        <button type="button" className={s.toggleButton} onClick={handleToggle}>
+          <ArrowDownIcon className={s.sortSelectArrow} />
+        </button>
+      </div>
 
-        onSortChange(nextSortBy, nextSortDirection)
-      }}
-    >
-      {SORT_OPTIONS.map(item => (
-        <option
-          key={`${item.sortBy}-${item.direction}`}
-          value={`${item.sortBy}:${item.direction}`}
-        >
-          {item.name}
-        </option>
-      ))}
-    </select>
+      {isOpen && (
+        <div className={s.dropdown}>
+          {SORT_OPTIONS.map(item => {
+            const isSelected =
+              item.sortBy === sortBy && item.direction === sortDirection
+
+            return (
+              <button
+                key={`${item.sortBy}-${item.direction}`}
+                type="button"
+                className={`${s.option} ${isSelected ? s.selected : ''}`}
+                onClick={() => handleOptionClick(item.sortBy, item.direction)}
+              >
+                {item.name}
+              </button>
+            )
+          })}
+        </div>
+      )}
+    </div>
   )
 }

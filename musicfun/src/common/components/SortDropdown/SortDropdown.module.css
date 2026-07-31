@@ -1,0 +1,77 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  padding-bottom: 0;
+}
+
+.label {
+  color: var(--text-white);
+}
+
+.selectedValue {
+  color: var(--text-white);
+}
+
+.toggleButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-light);
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: max-content;
+  background: var(--color-black);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  z-index: 20;
+}
+
+.option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 4px 0;
+  border: none;
+  background: transparent;
+  color: var(--text-white);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.option:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sortSelectArrow {
+  width: 12px;
+  height: 12px;
+}
