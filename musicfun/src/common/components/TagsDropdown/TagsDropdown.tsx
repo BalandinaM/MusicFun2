@@ -31,7 +31,9 @@ export const TagsDropdown = ({
   const hiddenCount = selectedTags.length - maxVisible
 
   const handleChipClick = () => {
-    setIsOpen(!isOpen)
+    if (tags.length > 0) {
+      setIsOpen(!isOpen)
+    }
   }
 
   const handleToggle = (tag: Tag) => {
@@ -42,11 +44,15 @@ export const TagsDropdown = ({
     onRemoveTag?.(tag)
   }
 
+  const hasTags = tags.length > 0
+
   return (
     <div className={s.wrap}>
       <div className={s.chips} onClick={handleChipClick}>
         {selectedTags.length === 0 ? (
-          <span className={s.placeholder}>Select tags...</span>
+          <span className={s.placeholder}>
+            {hasTags ? 'Select tags...' : 'No tags available'}
+          </span>
         ) : (
           <>
             {visibleTags.map(tag => (
@@ -69,7 +75,7 @@ export const TagsDropdown = ({
         <ArrowDownIcon className={`${s.chevron} ${isOpen ? s.open : ''}`} />
       </div>
 
-      {isOpen && (
+      {isOpen && hasTags && (
         <div className={s.dropdown}>
           {tags.map(tag => {
             const isSelected = selectedTags.some(t => t.id === tag.id)

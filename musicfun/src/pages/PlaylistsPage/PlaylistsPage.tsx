@@ -5,8 +5,8 @@ import {
   SortDropdown,
   TagsDropdown,
 } from '@/common/components'
+import { useMemo, useState, type ChangeEvent } from 'react'
 import { useFetchPlaylistsQuery } from '@/features/playlists/api/playlistsApi'
-import { useState, type ChangeEvent } from 'react'
 import s from './PlaylistsPage.module.css'
 import { PlaylistsList } from '@/features/playlists/ui'
 import { useDebounceValue } from '@/common/hooks'
@@ -16,19 +16,8 @@ import { useSearchParams } from 'react-router'
 
 const PAGE_SIZE = 10
 
-const allTags = [
-  { id: '1', name: 'Playlists' },
-  { id: '2', name: 'Artists' },
-  { id: '3', name: 'Albums' },
-  { id: '4', name: 'Podcast' },
-  { id: '5', name: 'Rock' },
-  { id: '6', name: 'Indie' },
-  { id: '7', name: 'Pop' },
-  { id: '8', name: 'Jazz' },
-]
-
 export const PlaylistsPage = () => {
-  const [selectedTags, setSelectedTags] = useState(allTags.slice(0, 3))
+  const [selectedTags, setSelectedTags] = useState<Tag[]>([])
   const [searchParams, setSearchParams] = useSearchParams()
   const search = searchParams.get('search') || ''
   const sortBy = (searchParams.get('sortBy') as SortOption) || 'addedAt'
@@ -47,6 +36,17 @@ export const PlaylistsPage = () => {
     pageNumber: currentPage,
     pageSize: PAGE_SIZE,
   })
+
+  const playlistData = playlists?.data
+
+  const availableTags = useMemo(() => {
+    if (!playlistData) return []
+
+    const tags = playlistData.flatMap(playlist => playlist.attributes.tags)
+    const uniqueTags = new Map(tags.map(tag => [tag.id, tag]))
+
+    return Array.from(uniqueTags.values())
+  }, [playlistData])
 
   if (isLoading) return <div>Loading...</div>
   if (!playlists?.data.length) return <div>No playlists found</div>
@@ -119,9 +119,10 @@ export const PlaylistsPage = () => {
           callback={searchHandler}
           placeholder={'Search playlist by title'}
         />
+        {/* в этот блок должны попадать данные пришедшие с сервера  playlists.data.tags*/}
         <h4 className={s.subtitle}>Hashtags</h4>
         <TagsDropdown
-          tags={allTags}
+          tags={availableTags}
           selectedTags={selectedTags}
           onToggleTag={handleToggleTag}
           onRemoveTag={handleRemoveTag}
