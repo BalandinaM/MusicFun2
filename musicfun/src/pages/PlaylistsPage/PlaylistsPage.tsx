@@ -1,5 +1,6 @@
 import {
   Pagination,
+  PageTitle,
   SearchInput,
   SortDropdown,
   TagsDropdown,
@@ -27,8 +28,6 @@ const allTags = [
 ]
 
 export const PlaylistsPage = () => {
-  // const [currentPage, setCurrentPage] = useState(1)
-  // const [search, setSearch] = useState('')
   const [selectedTags, setSelectedTags] = useState(allTags.slice(0, 3))
   const [searchParams, setSearchParams] = useSearchParams()
   const search = searchParams.get('search') || ''
@@ -115,7 +114,7 @@ export const PlaylistsPage = () => {
   return (
     <section className={s.section}>
       <div className={s.header}>
-        <h1>All playlists</h1>
+        <PageTitle>All playlists</PageTitle>
         <SearchInput
           callback={searchHandler}
           placeholder={'Search playlist by title'}
