@@ -37,19 +37,15 @@ export const PlaylistsPage = () => {
     pageSize: PAGE_SIZE,
   })
 
-  const playlistData = playlists?.data
-
   const availableTags = useMemo(() => {
-    if (!playlistData) return []
-
+    const playlistData = playlists?.data ?? []
     const tags = playlistData.flatMap(playlist => playlist.attributes.tags)
     const uniqueTags = new Map(tags.map(tag => [tag.id, tag]))
 
     return Array.from(uniqueTags.values())
-  }, [playlistData])
+  }, [playlists?.data])
 
   if (isLoading) return <div>Loading...</div>
-  if (!playlists?.data.length) return <div>No playlists found</div>
 
   const updateFilters = (
     updates: Record<string, string | number | null | undefined>,
@@ -136,7 +132,7 @@ export const PlaylistsPage = () => {
         />
       </div>
       <div className={s.content}>
-        <PlaylistsList playlists={playlists.data} variant="full" />
+        <PlaylistsList playlists={playlists?.data} variant="full" />
         <Pagination
           currentPage={currentPage}
           setCurrentPage={handlePageChange}
