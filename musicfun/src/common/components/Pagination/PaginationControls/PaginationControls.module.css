@@ -5,15 +5,17 @@
 }
 
 .pageButton {
+  min-width: 40px;
+  height: 40px;
   padding: 4px 10px;
-  background: white;
-  border: 1px solid #aaa;
+  background: var(--color-gray-850);
+  box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.11);
   border-radius: 4px;
   cursor: pointer;
 }
 
 .pageButtonActive {
-  background: #ececec;
+  background: var(--color-pink-500);
   cursor: default;
 }
 
@@ -21,4 +23,5 @@
   padding: 4px 10px;
   color: #888;
   user-select: none;
+  align-self: flex-end;
 }
