@@ -1,2 +1,2 @@
+export { Login } from './Login'
 export { OAuthCallback } from './OAuthCallback/OAuthCallback'
-export { ProfilePage } from './ProfilePage/ProfilePage'

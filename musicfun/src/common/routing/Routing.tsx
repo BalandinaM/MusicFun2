@@ -1,8 +1,9 @@
-import { OAuthCallback, ProfilePage } from '@/features/auth/iu'
+import { OAuthCallback } from '@/features/auth/ui'
 import { TracksPage } from '@/features/tracks/ui'
 import { Routes, Route } from 'react-router'
 import { PageNotFound } from '../components'
 import { MainPage, PlaylistsPage } from '@/pages'
+import { ProfilePage } from '@/pages/ProfilePage'
 
 export const Path = {
   //это предупреждение, вите советует убрать объявления контстант в другое место, а тут оставить только код компонента

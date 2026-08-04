@@ -1,4 +1,4 @@
-import { Login } from '@/common/components'
+import { Login } from '@/features/auth/ui'
 import s from './HeaderMainPage.module.css'
 import { AuthUser } from './AuthUser'
 import type { MeResponse } from '@/features/auth/api'

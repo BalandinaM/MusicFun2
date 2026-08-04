@@ -1,10 +1,10 @@
 import { useFetchPlaylistsQuery } from '@/features/playlists/api/playlistsApi'
 import { PlaylistsList } from '@/features/playlists/ui/PlaylistsPage1/PlaylistsList/PlaylistsList'
-import { useGetMeQuery } from '../../api/authApi'
 import { CreatePlaylistForm } from '@/features/playlists/ui'
 import s from './ProfilePage.module.css'
 import { Navigate } from 'react-router'
 import { Path } from '@/common/routing'
+import { useGetMeQuery } from '@/features/auth/api/authApi'
 
 export const ProfilePage = () => {
   const { data: meResponse, isLoading: isMeLoading } = useGetMeQuery()
