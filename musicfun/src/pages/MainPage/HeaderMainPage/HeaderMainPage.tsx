@@ -1,6 +1,6 @@
 import { Login } from '@/features/auth/ui'
 import s from './HeaderMainPage.module.css'
-import { AuthUser } from './AuthUser'
+import { UserPanel } from './UserPanel'
 import type { MeResponse } from '@/features/auth/api'
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 export const HeaderMainPage = ({ data }: Props) => {
   return (
     <div className={s.container}>
-      {data && <AuthUser data={data} />}
+      {data && <UserPanel data={data} />}
       {!data && <Login />}
     </div>
   )
