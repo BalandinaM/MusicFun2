@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import s from './TagsDropdown.module.css'
 import { Chip } from '../Chip/Chip'
-import { ArrowDownIcon } from '../Icons'
+import { ArrowIcon } from '../Icons'
 
 type Tag = {
   id: string
@@ -72,7 +72,7 @@ export const TagsDropdown = ({
           </>
         )}
 
-        <ArrowDownIcon className={`${s.chevron} ${isOpen ? s.open : ''}`} />
+        <ArrowIcon className={`${s.chevron} ${isOpen ? s.open : ''}`} />
       </div>
 
       {isOpen && hasTags && (

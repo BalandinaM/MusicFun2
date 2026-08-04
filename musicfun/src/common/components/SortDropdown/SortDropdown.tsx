@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { SortDirection, SortOption } from '@/features/playlists/api'
 import { SORT_OPTIONS } from '@/features/playlists/model'
-import { ArrowDownIcon } from '../Icons'
+import { ArrowIcon } from '../Icons'
 import s from './SortDropdown.module.css'
 
 type Props = {
@@ -60,7 +60,7 @@ export const SortDropdown = ({
           {selectedOption?.name}
         </span>
         <button type="button" className={s.toggleButton} onClick={handleToggle}>
-          <ArrowDownIcon className={s.sortSelectArrow} />
+          <ArrowIcon className={s.sortSelectArrow} />
         </button>
       </div>
 

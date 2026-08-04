@@ -2,8 +2,10 @@
   display: flex;
   gap: 8px;
   justify-content: center;
+  align-items: center;
 }
 
+.navButton,
 .pageButton {
   min-width: 40px;
   height: 40px;
@@ -12,6 +14,17 @@
   box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.11);
   border-radius: 4px;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-light);
+  border: none;
+}
+
+.navButton:disabled,
+.pageButton:disabled {
+  opacity: 0.6;
+  cursor: default;
 }
 
 .pageButtonActive {
@@ -24,4 +37,9 @@
   color: #888;
   user-select: none;
   align-self: flex-end;
+}
+
+.navArrow {
+  width: 12px;
+  height: 12px;
 }
