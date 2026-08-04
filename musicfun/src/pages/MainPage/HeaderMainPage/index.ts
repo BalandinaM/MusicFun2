@@ -1,1 +1,1 @@
-export { HeaderMainPage } from './HeaderMainPage';
+export { HeaderMainPage } from './HeaderMainPage'
