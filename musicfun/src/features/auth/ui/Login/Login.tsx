@@ -1,6 +1,6 @@
 import { Path } from '@/common/routing'
 import { useLoginMutation } from '@/features/auth/api/authApi'
-import s from './Login.module.css'
+import { Button } from '@/common/components'
 
 export const Login = () => {
   const [login] = useLoginMutation()
@@ -25,12 +25,6 @@ export const Login = () => {
   }
 
   return (
-    <button
-      type="button"
-      onClick={loginHandler}
-      className={`${s.button} text-button-login`}
-    >
-      Sign up with APIHUB
-    </button>
+    <Button title="Sign up with APIHUB" onClick={loginHandler} variant="pink" />
   )
 }
