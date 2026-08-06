@@ -5,6 +5,8 @@ import { useGetMeQuery } from '@/features/auth/api/authApi'
 import { useFetchTracksListQuery } from '@/features/tracks/api/tracksApi'
 import { useFetchPlaylistsQuery } from '@/features/playlists/api/playlistsApi'
 import { CardPlaylist } from '@/features/playlists/ui'
+import { useAppSelector } from '@/common/hooks'
+import { selectIsLoggedIn } from '@/features/auth/model/authSlice'
 
 const tags = ['Playlists', 'Artists', 'Albums', 'Podcast', 'Podcasts & shows']
 
@@ -17,7 +19,7 @@ export const MainPage = () => {
     useFetchPlaylistsQuery({})
 
   const included = newTracks?.included
-  const isAuth = !!data
+  const isAuth = useAppSelector(selectIsLoggedIn)
 
   if (isLoadingTracks || isLoadingPlaylists) return <div>Loading...</div>
 
