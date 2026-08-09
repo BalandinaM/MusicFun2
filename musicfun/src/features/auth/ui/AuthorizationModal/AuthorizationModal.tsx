@@ -1,14 +1,18 @@
 import { Path } from '@/common/routing'
 import { Login } from '@/features/auth/ui'
 import { Navigate, useNavigate } from 'react-router'
-import s from './AuthorizationPage.module.css'
+import s from './AuthorizationModal.module.css'
 import { useAppSelector } from '@/common/hooks'
 import { selectIsLoggedIn } from '@/features/auth/model/authSlice'
 import { Button } from '@/common/components'
 import backgroundImage from '@/assets/images/authCover.png'
-import { SmileIcon } from '../../common/components/Icons/SmileIcon'
+import { SmileIcon } from '../../../../common/components/Icons/SmileIcon'
 
-export const AuthorizationPage = () => {
+type Props = {
+  onClose: () => void
+}
+
+export const AuthorizationModal = ({ onClose }: Props) => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn)
   const navigate = useNavigate()
 
@@ -18,6 +22,7 @@ export const AuthorizationPage = () => {
 
   const handleContinueWithoutAuth = () => {
     navigate(Path.Main)
+    onClose()
   }
 
   return (
@@ -32,12 +37,14 @@ export const AuthorizationPage = () => {
         />
         <SmileIcon className={s.overlay} />
       </div>
-      <h1 className="text-heading-xl">Millions of Songs. Free on Musifun.</h1>
-      <Login />
-      <Button
-        title="Continue without Sign In"
-        onClick={handleContinueWithoutAuth}
-      />
+      <div className={s.content}>
+        <h1 className="text-heading-xl">Millions of Songs. Free on Musifun.</h1>
+        <Login />
+        <Button
+          title="Continue without Sign In"
+          onClick={handleContinueWithoutAuth}
+        />
+      </div>
     </div>
   )
 }

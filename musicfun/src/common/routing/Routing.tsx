@@ -4,14 +4,14 @@ import { Routes, Route } from 'react-router'
 import { PageNotFound, ProtectedRoute } from '../components'
 import { MainPage, PlaylistsPage } from '@/pages'
 import { ProfilePage } from '@/pages/ProfilePage'
-import { AuthorizationPage } from '@/pages/AuthorizationPage'
+// import { AuthorizationPage } from '@/features/auth/ui/AuthorizationModal'
 import { useAppSelector } from '../hooks'
 import { selectIsLoggedIn } from '@/features/auth/model/authSlice'
 
 export const Path = {
   //это предупреждение, вите советует убрать объявления контстант в другое место, а тут оставить только код компонента
   Main: '/',
-  Login: '/login',
+  // Login: '/login',
   Playlists: '/playlists',
   Tracks: '/tracks',
   Profile: '/profile',
@@ -27,13 +27,13 @@ export const Routing = () => {
       <Route path={Path.Main} element={<MainPage />} />
       <Route path={Path.Playlists} element={<PlaylistsPage />} />
       <Route path={Path.Tracks} element={<TracksPage />} />
-      <Route
+      {/* <Route
         element={
           <ProtectedRoute isAllowed={isLoggedIn} redirectPath={Path.Login} />
         }
-      >
-        <Route path={Path.Profile} element={<ProfilePage />} />
-      </Route>
+      > */}
+      <Route path={Path.Profile} element={<ProfilePage />} />
+      {/* </Route> */}
       <Route path={Path.OAuthRedirect} element={<OAuthCallback />} />
       {/* <Route
         element={
@@ -42,7 +42,7 @@ export const Routing = () => {
       >
         <Route path={Path.Login} element={<AuthorizationPage />} />
       </Route> */}
-      <Route path={Path.Login} element={<AuthorizationPage />} />
+      {/* <Route path={Path.Login} element={<AuthorizationPage />} /> */}
       <Route path={Path.NotFound} element={<PageNotFound />} />
     </Routes>
   )
