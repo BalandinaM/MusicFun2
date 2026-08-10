@@ -17,14 +17,14 @@ export const SmileIcon = (props: SVGProps<SVGSVGElement>) => (
     <path
       d="M64.9147 69.5033C54.9576 80.1 35.6 80.1 24.03 68.8159"
       stroke="white"
-      stroke-width="6.15391"
-      stroke-linecap="round"
+      strokeWidth="6.15391"
+      strokeLinecap="round"
     />
     <path
       d="M71.3094 49.8062C58.386 63.5597 33.2618 63.5597 18.245 48.914"
       stroke="white"
-      stroke-width="7.98719"
-      stroke-linecap="round"
+      strokeWidth="7.98719"
+      strokeLinecap="round"
     />
   </svg>
 )

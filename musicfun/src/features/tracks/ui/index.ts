@@ -1,1 +1,2 @@
-export { TracksPage } from './TracksPage'
+export { LoadingTrigger } from './LoadingTrigger/index'
+export { TracksList } from './TracksList/TracksList'

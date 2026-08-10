@@ -5,7 +5,7 @@ type Props = {
   tracks: TrackData[]
 }
 
-const TracksList = ({ tracks }: Props) => {
+export const TracksList = ({ tracks }: Props) => {
   return (
     <div className={s.list}>
       {tracks.map(track => {
@@ -28,5 +28,3 @@ const TracksList = ({ tracks }: Props) => {
     </div>
   )
 }
-
-export default TracksList
