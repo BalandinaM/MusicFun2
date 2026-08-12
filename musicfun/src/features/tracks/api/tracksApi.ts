@@ -14,7 +14,7 @@ export const tracksApi = baseApi.injectEndpoints({
   endpoints: build => ({
     fetchTracks: build.infiniteQuery<
       FetchTracksResponse,
-      void,
+      FetchTracksArgs,
       string | undefined
     >({
       infiniteQueryOptions: {
@@ -23,10 +23,15 @@ export const tracksApi = baseApi.injectEndpoints({
           return lastPage.meta.nextCursor || undefined
         },
       },
-      query: ({ pageParam }) => {
+      query: ({ queryArg, pageParam }) => {
         return {
           url: 'playlists/tracks',
-          params: { cursor: pageParam, pageSize: 5, paginationType: 'cursor' },
+          params: {
+            ...queryArg,
+            cursor: pageParam,
+            pageSize: 5,
+            paginationType: 'cursor',
+          },
         }
       },
       ...withZodCatch(fetchTracksResponseSchema),
