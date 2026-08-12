@@ -23,7 +23,7 @@ export type reactionTrackResponse = z.infer<typeof reactionTrackResponseSchema>
 
 // Arguments
 export type FetchTracksArgs = {
-  pageNumber?: number
+  // pageNumber?: number
   pageSize?: number
   search?: string
   sortBy?: 'publishedAt' | 'likesCount'
@@ -33,5 +33,5 @@ export type FetchTracksArgs = {
   userId?: string
   includeDrafts?: boolean
   paginationType?: 'offset' | 'cursor'
-  cursor?: string
+  // cursor?: string
 }
