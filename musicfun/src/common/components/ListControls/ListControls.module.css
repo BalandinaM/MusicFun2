@@ -1,0 +1,13 @@
+.header {
+  flex-shrink: 0;
+  background: var(--color-dark);
+  z-index: 10;
+}
+
+.title {
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  margin: 8px 0;
+}

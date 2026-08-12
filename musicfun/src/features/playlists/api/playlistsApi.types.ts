@@ -27,9 +27,6 @@ export type UpdatePlaylistArgs = {
   tagIds: string[]
 }
 
-export type SortOption = 'addedAt' | 'likesCount'
-export type SortDirection = 'desc' | 'asc'
-
 export type PlaylistMeta = z.infer<typeof playlistMetaSchema>
 export type CreatePlaylistArgs = z.infer<typeof createPlaylistSchema>
 export type PlaylistsResponse = z.infer<typeof playlistsResponseSchema>

@@ -4,10 +4,10 @@ import s from './SearchInput.module.css'
 
 type Props = {
   callback: (e: ChangeEvent<HTMLInputElement>) => void
-  placeholder: string
+  searchBy: string
 }
 
-export const SearchInput = ({ callback, placeholder }: Props) => {
+export const SearchInput = ({ callback, searchBy }: Props) => {
   return (
     <div className={s.wrap}>
       <SearchIcon className={s.icon} />
@@ -15,7 +15,7 @@ export const SearchInput = ({ callback, placeholder }: Props) => {
         type="search"
         className={s.input}
         onChange={callback}
-        placeholder={placeholder}
+        placeholder={`Search ${searchBy} by title`}
       />
     </div>
   )

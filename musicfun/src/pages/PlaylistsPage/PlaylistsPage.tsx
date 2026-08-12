@@ -1,10 +1,3 @@
-import {
-  Pagination,
-  PageTitle,
-  SearchInput,
-  SortDropdown,
-  TagsDropdown,
-} from '@/common/components'
 import { useMemo, useState, type ChangeEvent } from 'react'
 import { useFetchPlaylistsQuery } from '@/features/playlists/api/playlistsApi'
 import s from './PlaylistsPage.module.css'
@@ -13,6 +6,7 @@ import { useDebounceValue } from '@/common/hooks'
 import type { Tag } from '@/common/types'
 import type { SortDirection, SortOption } from '@/features/playlists/api'
 import { useSearchParams } from 'react-router'
+import { ListControls, Pagination } from '@/common/components'
 
 const PAGE_SIZE = 10
 
@@ -109,28 +103,19 @@ export const PlaylistsPage = () => {
 
   return (
     <section className={s.section}>
-      <div className={s.header}>
-        <PageTitle className={s.title}>All playlists</PageTitle>
-        <SearchInput
-          callback={searchHandler}
-          placeholder={'Search playlist by title'}
-        />
-        {/* в этот блок должны попадать данные пришедшие с сервера  playlists.data.tags*/}
-        <h4 className={s.subtitle}>Hashtags</h4>
-        <TagsDropdown
-          tags={availableTags}
-          selectedTags={selectedTags}
-          onToggleTag={handleToggleTag}
-          onRemoveTag={handleRemoveTag}
-          maxVisible={2}
-          isAuth={true}
-        />
-        <SortDropdown
-          sortBy={sortBy}
-          sortDirection={sortDirection}
-          onSortChange={handleSortChange}
-        />
-      </div>
+      <ListControls
+        searchHandler={searchHandler}
+        searchBy="playlist"
+        availableTags={availableTags}
+        selectedTags={selectedTags}
+        handleToggleTag={handleToggleTag}
+        handleRemoveTag={handleRemoveTag}
+        maxVisible={2}
+        isAuth={true}
+        sortBy={sortBy}
+        sortDirection={sortDirection}
+        handleSortChange={handleSortChange}
+      />
       <div className={s.content}>
         <PlaylistsList playlists={playlists?.data} variant="full" />
         <Pagination

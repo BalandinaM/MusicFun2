@@ -4,7 +4,7 @@ import { useInfiniteScroll } from '@/common/hooks'
 
 export const TracksPage = () => {
   const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage } =
-    useFetchTracksInfiniteQuery()
+    useFetchTracksInfiniteQuery({ search: 'cat' })
 
   const { observerRef } = useInfiniteScroll({
     hasNextPage,
